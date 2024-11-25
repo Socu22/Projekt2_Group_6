@@ -14,13 +14,18 @@ public class UserInterface {
 
     public void start_interface_User(String name){
         while (running) {
+            System.out.println("Tast 1 for at se specifik medlemoplysninger:");
+            System.out.println("Tast 2 for at registrer nyt medlem: ");
+            System.out.println("Tast 3 for at tilføj reslutater: ");
+            System.out.println("Tast 4 for at se alle reslutater: ");
             inputInt = scanner.nextInt();
 
 
-            System.out.println("1 get member ");
+
             switch (inputInt) {
                 case 1:
                     //get current member
+                    System.out.println();
                     getMember(name);
                     break;
                 case 2:
@@ -28,14 +33,13 @@ public class UserInterface {
                     addTimeToMember();
                     break;
                 case 3:
-                    //Add debt to Member  object-
+                    //Add Competition to Member  object-
                     addCompetitionToMember();
                 case 4:
-                    //pay debt for Member object
+                    //View swimming results
                     viewTimesForMember();
                 case 5:
-                    //pay debt for Member object
-                   //
+                   //show competitions for member
                     viewCompetitionForMember();
 
                 case 6:
@@ -58,13 +62,12 @@ public class UserInterface {
 
         return currentMember;
     }
-    public double addTimeToMember(){
-        int res = scanner.nextInt(); //logic skal ændres.
-        return res;
-    }
-    public Competition addCompetitionToMember(){
+    public void addTimeToMember(){
+       currentMember.addTime();//logic skal ændres.
 
-        return new Competition();//refers Competition Class,
+    }
+    public void addCompetitionToMember(){
+       // currentMember.addC
 
     }
     public void viewTimesForMember(){

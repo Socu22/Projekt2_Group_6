@@ -10,10 +10,12 @@ public class AdminInterface {
 
     public void start_interface_Admin(){
         while (running) {
+
+            System.out.println("Tast 1 for at finde specifikt medlem: ");
+            System.out.println("Tast 2 for at registerer nyt medlem: ");
+            System.out.println("Tast 3 for at tilføje gæld til medlem: ");
+            System.out.println("Tast 4 for at registerer betalt gæld for medlem: ");
             input= scanner.nextInt();
-
-
-            System.out.println("1, 2 , 3");
             switch (input) {
                 case 1:
                     //get current member
