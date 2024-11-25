@@ -54,7 +54,7 @@ public class UserInterface {
     public Member getMember(String username) {
         MemberHandler.addToList();
         try {
-            currentMember= MemberHandler.instance.searchByName(username);
+            currentMember= MemberHandler.searchByName(username);
             System.out.println(currentMember);
         } catch (MemberNotFoundException e) {
 

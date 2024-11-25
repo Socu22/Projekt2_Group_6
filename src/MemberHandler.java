@@ -4,9 +4,6 @@ import java.util.Arrays;
 
 public class MemberHandler {
 
-    static MemberHandler instance = new MemberHandler();
-
-
     public static ArrayList<Member> memberList = new ArrayList<>();
 
     static Member searchByName(String name) throws MemberNotFoundException{
