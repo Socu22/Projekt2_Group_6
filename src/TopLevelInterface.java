@@ -1,11 +1,15 @@
 import java.util.Scanner;
 
 public class TopLevelInterface {
+    public static final AdminInterface startAdminInterface= new AdminInterface();
+    public static final UserInterface startUserInterface= new UserInterface();
+    static Scanner scanner = new Scanner(System.in);
+
+
     // Admin password login
     private static final String ADMIN_PASSWORD = "lol123";
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public void start(){
         boolean running = true;
 
         while (running) {
@@ -38,6 +42,8 @@ public class TopLevelInterface {
         scanner.close();
     }
 
+
+
     // Method for admin-login
     private static void adminLogin(Scanner scanner) {
         System.out.print("Indtast admin password: ");
@@ -45,16 +51,21 @@ public class TopLevelInterface {
 
         if (password.equals(ADMIN_PASSWORD)) {
             System.out.println("Velkommen, Admin!");
+            startAdminInterface.start_interface_Admin();
             // If PW is wrong
         } else {
             System.out.println("Forkert password. Adgang nægtet.");
         }
     }
 
+
     // Method for User-login
     private static void userLogin(Scanner scanner) {
         System.out.print("Indtast dit brugernavn: ");
-        String username = scanner.nextLine();
-        System.out.println("Velkommen, " + username + "!");
+        String usernameForUser = scanner.nextLine();
+        System.out.println("Velkommen, " + usernameForUser + "!");
+
+        startUserInterface.start_interface_User(usernameForUser);
+
     }
 }
