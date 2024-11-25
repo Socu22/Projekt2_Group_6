@@ -22,6 +22,16 @@ public class InputHandler {
         }
     }
 
+    public static double inputDouble(String prompt) throws InvalidInputException {
+        System.out.println(prompt);
+        try {
+            return scanner.nextDouble();
+        } catch (Exception e) {
+            scanner.nextLine();
+            throw new InvalidInputException("Ugyldigt input: Der forventes et kommatal.");
+        }
+    }
+
     public static String inputString(String prompt) throws InvalidInputException {
         System.out.println(prompt);
         String input = scanner.nextLine();
