@@ -11,6 +11,7 @@ public class Member {
     private LocalDate birthdate;
     private LocalDate signUpDate;
     private int age;
+    private String memberType;
     private ArrayList<TrainTime> trainTimeList = new ArrayList<>();
     private Contingent contingent;
     private static int idCounter = 1;
@@ -23,6 +24,20 @@ public class Member {
         this.signUpDate = LocalDate.now();
         idCounter++;
         this.contingent = new Contingent(this);
+            if (this.getAge()<18){
+                memberType = "Junior Motionist";
+            } else if (this.getAge()>60) {
+                memberType = "Næsten død Motionist";
+            }else {
+                memberType = "Senior Motionist";
+            }
+        if (this instanceof PassiveMember) {
+            if (this.getAge()<18){
+                memberType = "Junior Passiv";
+            } else {
+                memberType = "Senior Passiv";
+            }
+        }
     }
 
     public String getName(){
@@ -39,7 +54,7 @@ public class Member {
 
     public void payDebt(){
         System.out.println("Du vil gerne betale noget eller hele din gæld, indtast hvor meget: ");
-        double amountToPay = 1600;
+        double amountToPay = 1000;
         this.contingent.payDebt(amountToPay);
     }
 
@@ -56,7 +71,7 @@ public class Member {
     }
 
     public String toString(){
-        return "Velkommen " + name + " ID: " + id + "\n\tAlder: " + age + "\n\tMedlemstype: Seniormotionist\n" + contingent + "\n\tMeldt ind den: " + signUpDate;
+        return "Velkommen " + name + " ID: " + id + "\n\tAlder: " + age + "\n\tMedlemstype: " + memberType + "\n" + contingent + "\n\tMeldt ind den: " + signUpDate;
     }
 
     void addTime(){
@@ -71,17 +86,14 @@ public class Member {
     }
 
     public static void main(String[] args) {
-        Member m1 = new Member("Frederik", LocalDate.of(2003, 02, 12));
+        Member m1 = new PassiveMember("Frederik", LocalDate.of(1922, 02, 12));
         System.out.println(m1);
-        m1.payDebt();
-        System.out.println(m1);
-        m1.addTime();
-        m1.addTime();
-        m1.addTime();
-        m1.addTime();
-        m1.addTime();
-        m1.viewTimes();
+
     }
 }
 
-
+class PassiveMember extends Member{
+    public PassiveMember(String name, LocalDate birthdate) {
+        super(name, birthdate);
+    }
+}

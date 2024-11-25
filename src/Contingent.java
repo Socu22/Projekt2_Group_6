@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Contingent {
     private double amount;
     private double debt;
@@ -9,6 +11,10 @@ public class Contingent {
             amount = 1600*0.75;
         }else {
             amount = 1600;
+        }
+
+        if(m instanceof PassiveMember){
+            amount = 500;
         }
         debt = amount;
     }

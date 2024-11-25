@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Interface_Master software = new Interface_Master();
+        Client_Interface software = new Client_Interface();
         software.start();
         System.out.println("hello World");
     }
