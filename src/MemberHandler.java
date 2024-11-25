@@ -1,20 +1,31 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MemberHandler {
 
-
-
     public static ArrayList<Member> memberList = new ArrayList<>();
 
-    static Member searchByName(String name) throws MemberNotFoundException{
+    static Member searchByName(String name) throws MemberNotFoundException, InvalidInputException{
+        ArrayList<Member> foundList = new ArrayList<>();
         System.out.println("Indtast navn: ");
         String searchName = name;
         for (Member m: memberList){
             if (m.getName().equalsIgnoreCase(searchName)){
-                return m;
+                foundList.add(m);
             }
+        }
+        if(foundList.size() == 1){
+            return foundList.get(0);
+        }
+        else if (foundList.size() > 1) {
+            System.out.println("Følgende brugere blev fundet med dette navn:");
+            int foundUserNR = 1;
+            for (Member m : foundList) {
+                System.out.println(foundUserNR + ": " + m.getName() + " ID: " + m.getID());
+                foundUserNR++;
+            }
+            int foundUserChoice = InputHandler.inputInt("Hvilken bruger vil du tilgå?");
+            return foundList.get(foundUserChoice - 1);
         }
         throw new MemberNotFoundException();
     }
@@ -29,27 +40,75 @@ public class MemberHandler {
         }
         throw new MemberNotFoundException();
     }
-    static void addToList(){ //temp metode indtil at arraylist har json ting
-        memberList.add(new Member("l",LocalDate.of(2024,1,1)));
+
+    public static Member smartSearch() throws MemberNotFoundException, InvalidInputException{
+        String userInput = InputHandler.inputString("Indtast navn eller ID på den ønskede bruger:");
+        int idInput = 0;
+        try{
+            idInput = Integer.parseInt(userInput);
+        }catch (Exception e){
+        }
+        if(idInput>0){
+            return searchByID(idInput);
+        }
+        else{
+            return searchByName(userInput);
+        }
+    }
+
+    public static void createMember() throws InvalidInputException{
+        System.out.println("Du har valgt at oprette et nyt medlem i svømmeklubben. Hvilken type medlem skal det være?");
+        System.out.println("1: Standard medlem \n2: Konkurrence medlem \n3:Passivt medlem");
+
+        int chosenInput=InputHandler.inputInt("Indtast dit valg:");
+        String chosenName=InputHandler.inputString("Indtast navn:");
+        LocalDate chosenDate = InputHandler.inputDate("Indtast medlemmets fødselsdato:");
+
+        Member m;
+
+        switch(chosenInput){
+            case 1:
+                m = new Member(chosenName,chosenDate);
+                memberList.add(m);
+                break;
+            case 2:
+                m = new PassiveMember(chosenName, chosenDate);
+                memberList.add(m);
+                break;
+
+            case 3:
+                System.out.println("Denne feature er endnu ikke understøttet");
+                break;
+
+            default:
+                System.out.println("Ugyldigt input.");
+                break;
+        }
     }
 
 
-   /* public static void main(String[] args) {
-        Member m1 = new Member("Lasse", LocalDate.of(1989,2,12));
-        Member m2 = new Member("Hubert", LocalDate.of(1998,8,12));
-
-        memberList.add(m1);
-        memberList.add(m2);
+    public static void main(String[] args) {
         try {
-            System.out.println(MemberHandler.searchByID(2));
+            MemberHandler.createMember();
+            MemberHandler.createMember();
+            MemberHandler.createMember();
+        }catch (Exception e){
+            System.out.println("Kunne ikke oprette medlem");
+            e.printStackTrace();
+        }
+
+        try {
+            System.out.println(MemberHandler.smartSearch());
         }
         catch (MemberNotFoundException e){
             System.out.println("Medlem ikke fundet i databasen");
             e.printStackTrace();
         }
+        catch (InvalidInputException e) {
+            System.out.println("Fejl i indtastning, prøv igen.");
+            e.printStackTrace();
+        }
     }
-
-    */
 }
 
 class MemberNotFoundException extends Exception{

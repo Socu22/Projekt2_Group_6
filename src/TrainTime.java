@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class TrainTime {
     private LocalDate date;         //Remember which day the time was set
-    private double duration;         //How fast was the trainging
+    private double duration;        //How fast was the trainging
     private String discipline;      //The swimming discipline
     private int distance;           //The Distance swam
     private String secOrMin = " sekunder";
@@ -33,7 +33,6 @@ public class TrainTime {
 
     public static void main(String[] args) {
         TrainTime t1 = new TrainTime(LocalDate.now(), 80.4, "Crawl", 1000);
-
         System.out.println(t1);
     }
 }
