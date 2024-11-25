@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+import static java.lang.Integer.parseInt;
 
 class InvalidInputException extends Exception {
     public InvalidInputException(String message) {
@@ -14,8 +15,10 @@ public class InputHandler {
 
     public static int inputInt(String prompt) throws InvalidInputException {
         System.out.println(prompt);
+        String input = scanner.nextLine();
+        int output = parseInt(input);
         try {
-            return scanner.nextInt();
+            return output;
         } catch (Exception e) {
             scanner.nextLine();
             throw new InvalidInputException("Ugyldigt input: Der forventes et heltal.");
@@ -24,8 +27,10 @@ public class InputHandler {
 
     public static double inputDouble(String prompt) throws InvalidInputException {
         System.out.println(prompt);
+        String input = scanner.nextLine();
+        Double output = Double.parseDouble(input);
         try {
-            return scanner.nextDouble();
+            return output;
         } catch (Exception e) {
             scanner.nextLine();
             throw new InvalidInputException("Ugyldigt input: Der forventes et kommatal.");
@@ -40,7 +45,6 @@ public class InputHandler {
         }
         return input;
     }
-
 
     public static LocalDate inputDate(String prompt) throws InvalidInputException {
         System.out.println(prompt + " (YYYY-MM-DD):");
