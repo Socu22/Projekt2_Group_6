@@ -15,9 +15,9 @@ public class InputHandler {
 
     public static int inputInt(String prompt) throws InvalidInputException {
         System.out.println(prompt);
-        String input = scanner.nextLine();
-        int output = parseInt(input);
         try {
+            String input = scanner.nextLine();
+            int output = parseInt(input);
             return output;
         } catch (Exception e) {
             scanner.nextLine();
@@ -27,9 +27,9 @@ public class InputHandler {
 
     public static double inputDouble(String prompt) throws InvalidInputException {
         System.out.println(prompt);
-        String input = scanner.nextLine();
-        Double output = Double.parseDouble(input);
         try {
+            String input = scanner.nextLine();
+            Double output = Double.parseDouble(input);
             return output;
         } catch (Exception e) {
             scanner.nextLine();
