@@ -5,7 +5,6 @@ public class UserInterface {
     public static String inputString ="";
     public  Member currentMember;
     public static boolean running= true;
-    static Scanner scanner = new Scanner(System.in);
 
 
 
@@ -48,7 +47,6 @@ public class UserInterface {
                     back();
                     break;
             }
-            scanner.nextLine();
         }
     }
 

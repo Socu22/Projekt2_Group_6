@@ -5,7 +5,6 @@ public class AdminInterface {
     public static int input=-1;
     private Member currentMember;
     public static boolean running= true;
-    static Scanner scanner = new Scanner(System.in);
 
 
     public void start_interface_Admin(){
@@ -44,7 +43,6 @@ public class AdminInterface {
                     back();
                     break;
             }
-            scanner.nextLine();
         }
     }
 
