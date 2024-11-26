@@ -14,12 +14,7 @@ public class AdminInterface {
             System.out.println("Tast 2 for at registerer nyt medlem: ");
             System.out.println("Tast 3 for at tilføje gæld til medlem: ");
             System.out.println("Tast 4 for at registerer betalt gæld for medlem: ");
-            try {
-                input= InputHandler.inputInt("Vælg et af følgende valg: ");
-            }
-            catch (InvalidInputException e){
-                System.out.println(e.getMessage());
-            }
+            input= InputHandler.inputInt("Vælg et af følgende valg: ");
 
 
             switch (input) {
