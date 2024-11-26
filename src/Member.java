@@ -41,6 +41,29 @@ public class Member {
             }
         }
     }
+    public Member (String name, LocalDate birthdate, LocalDate signUpDate, int id){
+        this.name = name;
+        this.birthdate = birthdate;
+        this.age = Period.between(birthdate, LocalDate.now()).getYears();
+        this.id = idCounter;
+        this.signUpDate = signUpDate;
+
+        if (this.getAge()<18){
+            memberType = "Junior Motionist";
+        } else if (this.getAge()>60) {
+            memberType = "Ældre Motionist";
+        }else {
+            memberType = "Senior Motionist";
+        }
+
+        if (this instanceof PassiveMember) {
+            if (this.getAge()<18){
+                memberType = "Junior Passiv";
+            } else {
+                memberType = "Senior Passiv";
+            }
+        }
+    }
 
     public String getName(){
         return name;
@@ -72,7 +95,7 @@ public class Member {
         }
     }
     public  String toCSV(){
-        return name + "," + id + "," + birthdate + "," + signUpDate + "," + age + "," + memberType;
+        return memberType + "," + name + "," + id + "," + birthdate + "," + signUpDate + "," + age;
     }
 
     public String toString(){

@@ -29,7 +29,7 @@ public class DatabaseHandler {
             BufferedReader br = new BufferedReader(new FileReader(path));
             while ((line = br.readLine()) != null) {
                 String[] medlemmer = line.split(",");
-                Member m = new Member(medlemmer[0], LocalDate.parse(medlemmer[2]));
+                Member m = new Member(medlemmer[1],LocalDate.parse(medlemmer[3]), LocalDate.parse(medlemmer[4]), Integer.parseInt(medlemmer[2]));
                 Memberlist.add(m);
             }
             br.close();
