@@ -103,13 +103,10 @@ public class Member {
     }
 
     void addTime(){
-        System.out.println("Du har valgt at tilføje en tid. Indtast den disciplin for din træning: ");
-        LocalDate dateOfTime = LocalDate.now();     //DUMMY, REPLACE WITH INPUTHANDLER
-        String chosenDiscipline = "Crawl";          //DUMMY, REPLACE WITH INPUTHANDLER
-        System.out.println("Indtast distancen du har svømmet:");
-        int distanceSwam = 100;                     //DUMMY, REPLACE WITH INPUTHANDLER
-        System.out.println("Indtast det antal sekunder det tog dig at svømme den distance");
-        double durationInSec = 100;                 //DUMMY, REPLACE WITH INPUTHANDLER
+        LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere: ");
+        String chosenDiscipline = InputHandler.inputString("Indtast navnet på den disciplin tiden er sat i: ");
+        int distanceSwam = InputHandler.inputInt("Indtast den distance du har svømmet: ");
+        double durationInSec = InputHandler.inputDouble("Indtast tiden det tog dig i sekunder: ");
         this.trainTimeList.add(new TrainTime(dateOfTime, durationInSec, chosenDiscipline, distanceSwam));
     }
 
