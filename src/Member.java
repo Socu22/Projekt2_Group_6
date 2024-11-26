@@ -127,7 +127,7 @@ class PassiveMember extends Member{
     public PassiveMember(String name, LocalDate birthdate) {
         super(name, birthdate);
     }
-    public PassiveMember(String name, LocalDate birthdate, LocalDate signUpDate, int id) {
+    public PassiveMember(String name, LocalDate birthdate, LocalDate signUpDate, int id) { //Contstructer 2
         super(name, birthdate, signUpDate, id);
     }
 }

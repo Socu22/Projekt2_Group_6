@@ -65,7 +65,7 @@ public class DatabaseHandler {
 
     public static void main(String[] args) {
 
-        readFile(); //Eksempel på brug uden brugerinput
+        readFile();
 
         Member newMember = new Member("Ben Dover", LocalDate.of(1990, 5, 20));
         writeToFile(newMember);
