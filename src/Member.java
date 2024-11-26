@@ -71,6 +71,9 @@ public class Member {
             System.out.println(t);
         }
     }
+    public  String toCSV(){
+        return name + "," + id + "," + birthdate + "," + signUpDate + "," + age + "," + memberType;
+    }
 
     public String toString(){
         return "Velkommen " + name + " ID: " + id + "\n\tAlder: " + age + "\n\tMedlemstype: " + memberType + "\n" + contingent + "\n\tMeldt ind den: " + signUpDate;
