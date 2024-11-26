@@ -29,8 +29,14 @@ public class DatabaseHandler {
             BufferedReader br = new BufferedReader(new FileReader(path));
             while ((line = br.readLine()) != null) {
                 String[] medlemmer = line.split(",");
-                Member m = new Member(medlemmer[1],LocalDate.parse(medlemmer[3]), LocalDate.parse(medlemmer[4]), Integer.parseInt(medlemmer[2]));
-                Memberlist.add(m);
+                if (medlemmer[0].equalsIgnoreCase("aktivmedlem")) {
+                    Member m = new Member(medlemmer[1], LocalDate.parse(medlemmer[3]), LocalDate.parse(medlemmer[4]), Integer.parseInt(medlemmer[2]));
+                    Memberlist.add(m);
+                }
+                else if (medlemmer[0].equalsIgnoreCase("passivmedlem")){
+                    Member m = new PassiveMember(medlemmer[1], LocalDate.parse(medlemmer[3]), LocalDate.parse(medlemmer[4]), Integer.parseInt(medlemmer[2]));
+                    Memberlist.add(m);
+                }
             }
             br.close();
         } catch (FileNotFoundException e) {
@@ -39,6 +45,9 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
         return Memberlist;
+    }
+    public static void save() {
+
     }
 
 

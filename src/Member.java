@@ -45,7 +45,7 @@ public class Member {
         this.name = name;
         this.birthdate = birthdate;
         this.age = Period.between(birthdate, LocalDate.now()).getYears();
-        this.id = idCounter;
+        this.id = id;
         this.signUpDate = signUpDate;
 
         if (this.getAge()<18){
@@ -126,5 +126,8 @@ public class Member {
 class PassiveMember extends Member{
     public PassiveMember(String name, LocalDate birthdate) {
         super(name, birthdate);
+    }
+    public PassiveMember(String name, LocalDate birthdate, LocalDate signUpDate, int id) {
+        super(name, birthdate, signUpDate, id);
     }
 }
