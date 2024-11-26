@@ -8,8 +8,8 @@ import java.time.temporal.ChronoUnit;
 public class Member {
     private String name;
     private int id;
-    private LocalDate birthdate;
-    private LocalDate signUpDate;
+    private final LocalDate birthdate;
+    private final LocalDate signUpDate;
     private int age;
     private String memberType;
     private ArrayList<TrainTime> trainTimeList = new ArrayList<>();
@@ -78,8 +78,8 @@ public class Member {
     }
 
     public void payDebt(){
-        System.out.println("Du vil gerne betale noget eller hele din gæld, indtast hvor meget: ");
-        double amountToPay = 1000;      //DUMMY NUMBER, USE INPUTHANDLER
+        double amountToPay;
+        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld, indtast hvor meget: ");      //DUMMY NUMBER, USE INPUTHANDLER
         this.contingent.payDebt(amountToPay);
     }
 

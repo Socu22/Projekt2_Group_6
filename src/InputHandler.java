@@ -12,7 +12,7 @@ public class InputHandler {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputInt(String prompt) throws InvalidInputException {
+    public static int inputInt(String prompt) {
         int result;
         while (true) {
             System.out.println(prompt);
@@ -28,7 +28,7 @@ public class InputHandler {
         return result;
     }
 
-    public static double inputDouble(String prompt) throws InvalidInputException {
+    public static double inputDouble(String prompt) {
         double result;
         while (true) {
             System.out.println(prompt);
@@ -44,7 +44,7 @@ public class InputHandler {
         return result;
     }
 
-    public static String inputString(String prompt) throws InvalidInputException {
+    public static String inputString(String prompt) {
         String input;
         while (true) {
             System.out.println(prompt);
@@ -58,7 +58,7 @@ public class InputHandler {
         return input;
     }
 
-    public static LocalDate inputDate(String prompt) throws InvalidInputException {
+    public static LocalDate inputDate(String prompt) {
         LocalDate result;
         while (true) {
             System.out.println(prompt + " (YYYY-MM-DD):");

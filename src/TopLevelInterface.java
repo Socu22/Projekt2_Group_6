@@ -19,27 +19,22 @@ public class TopLevelInterface {
             System.out.print("Vælg en mulighed: ");
 
             int choice;
-            try {
-                choice = InputHandler.inputInt("Vælg et af følgende valg: ");
-                switch (choice) {
-                    case 1:
-                        adminLogin();
-                        break;
-                    case 2:
-                        userLogin();
-                        break;
-                    case 3:
-                        System.out.println("Program afsluttes. Farvel!");
-                        running = false;
-                        break;
-                    default:
-                        System.out.println("Ugyldigt valg. Prøv igen.");
-                }
+            choice = InputHandler.inputInt("Vælg et af følgende valg: ");
+            switch (choice) {
+                case 1:
+                    adminLogin();
+                    break;
+                case 2:
+                    userLogin();
+                    break;
+                case 3:
+                    System.out.println("Program afsluttes. Farvel!");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Ugyldigt valg. Prøv igen.");
             }
-            catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
-            }
-               System.out.println(); // Extra line just for formality
+            System.out.println(); // Extra line just for formality
         }
     }
 
@@ -48,18 +43,13 @@ public class TopLevelInterface {
     private static void adminLogin() {
         System.out.print("Indtast admin password: ");
         String password;
-        try {
-            password = InputHandler.inputString("Skriv adgangskode: ");
-            if (password.equals(ADMIN_PASSWORD)) {
-                System.out.println("Velkommen, Admin!");
-                startAdminInterface.start_interface_Admin();
-                // If PW is wrong
-            } else {
-                System.out.println("Forkert password. Adgang nægtet.");
-            }
-        }
-        catch (InvalidInputException e){
-            System.out.println(e.getMessage());
+        password = InputHandler.inputString("Skriv adgangskode: ");
+        if (password.equals(ADMIN_PASSWORD)) {
+            System.out.println("Velkommen, Admin!");
+            startAdminInterface.start_interface_Admin();
+            // If PW is wrong
+        } else {
+            System.out.println("Forkert password. Adgang nægtet.");
         }
     }
 

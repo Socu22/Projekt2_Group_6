@@ -18,13 +18,7 @@ public class UserInterface {
             System.out.println("Tast 1 for at registrer tid for medlem: ");
             System.out.println("Tast 2 for at tilføj reslutater: ");
             System.out.println("Tast 3 for at se alle reslutater: ");
-            try {
-                inputInt = InputHandler.inputInt("Vælg et af følgende valg: ");
-            } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
-            }
-
-
+            inputInt = InputHandler.inputInt("Vælg et af følgende valg: ");
 
 
             switch (inputInt) {
