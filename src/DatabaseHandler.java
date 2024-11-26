@@ -13,8 +13,8 @@ public class DatabaseHandler {
             BufferedReader br = new BufferedReader(new FileReader(path));
 
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                System.out.println(Arrays.toString(values));
+                String[] medlemmer = line.split(",");
+                System.out.println(Arrays.toString(medlemmer));
             }
             br.close();
         } catch (FileNotFoundException e) {
@@ -23,6 +23,26 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
     }
+    public static ArrayList<Member> load() { //Metode til at loade hele Databse.csv filen og gør det til en Arraylist
+        ArrayList<Member> Memberlist = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            while ((line = br.readLine()) != null) {
+                String[] medlemmer = line.split(",");
+                Member m = new Member(medlemmer[0], LocalDate.parse(medlemmer[2]));
+                Memberlist.add(m);
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Memberlist;
+    }
+
+
+
     public static void writeToFile(Member member) { // Metode til at tilføje et Member til Database.csv filen
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(path, true));
