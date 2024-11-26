@@ -86,4 +86,9 @@ public class AdminInterface {
         running=false;
 
     }
+
+    // Beregner top 5 resultater for samtlige discipliner
+    public void bestTimesPerDisciplin(){
+        currentMember.viewTimes();
+    }
 }
