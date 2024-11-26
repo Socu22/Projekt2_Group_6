@@ -8,8 +8,8 @@ import java.time.temporal.ChronoUnit;
 public class Member {
     private String name;
     private int id;
-    private LocalDate birthdate;
-    private LocalDate signUpDate;
+    private final LocalDate birthdate;
+    private final LocalDate signUpDate;
     private int age;
     private String memberType;
     private ArrayList<TrainTime> trainTimeList = new ArrayList<>();
