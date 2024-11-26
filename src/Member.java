@@ -56,13 +56,8 @@ public class Member {
 
     public void payDebt(){
         double amountToPay;
-        try {
-            amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld, indtast hvor meget: ");      //DUMMY NUMBER, USE INPUTHANDLER
-            this.contingent.payDebt(amountToPay);
-        }
-        catch (InvalidInputException e){
-            System.out.println(e.getMessage());
-        }
+        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld, indtast hvor meget: ");      //DUMMY NUMBER, USE INPUTHANDLER
+        this.contingent.payDebt(amountToPay);
     }
 
     public void addDebt(){
