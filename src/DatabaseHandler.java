@@ -23,7 +23,7 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
     }
-    public static ArrayList<Member> load() { //Metode til at loade hele Databse.csv filen og gøre det til en Arraylist
+    public static ArrayList<Member> load() { //Metode til at loade hele Databse.csv filen og gør det til en Arraylist
         ArrayList<Member> Memberlist = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
