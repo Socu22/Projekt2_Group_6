@@ -55,9 +55,14 @@ public class Member {
     }
 
     public void payDebt(){
-        System.out.println("Du vil gerne betale noget eller hele din gæld, indtast hvor meget: ");
-        double amountToPay = 1000;      //DUMMY NUMBER, USE INPUTHANDLER
-        this.contingent.payDebt(amountToPay);
+        double amountToPay;
+        try {
+            amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld, indtast hvor meget: ");      //DUMMY NUMBER, USE INPUTHANDLER
+            this.contingent.payDebt(amountToPay);
+        }
+        catch (InvalidInputException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void addDebt(){
