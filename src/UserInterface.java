@@ -8,10 +8,6 @@ public class UserInterface {
     static Scanner scanner = new Scanner(System.in);
 
 
-
-
-
-
     public void start_interface_User(String name){
         while (running) {
             System.out.println("Tast 1 for at se specifik medlemoplysninger:");
@@ -26,7 +22,13 @@ public class UserInterface {
                 case 1:
                     //get current member
                     System.out.println();
-                    getMember(name);
+                    try {
+                        currentMember = MemberHandler.smartSearch();
+                    } catch (MemberNotFoundException e) {
+                        System.out.println("medlem ikke fundet");
+                    } catch (InvalidInputException e) {
+                        System.out.println("Fejl i input");
+                    }
                     break;
                 case 2:
                     //create Member
@@ -51,20 +53,11 @@ public class UserInterface {
         }
     }
 
-    public Member getMember(String username) {
-        MemberHandler.addToList();
-        try {
-            currentMember= MemberHandler.searchByName(username);
-            System.out.println(currentMember);
-        } catch (MemberNotFoundException e) {
 
-        }
 
-        return currentMember;
-    }
+
     public void addTimeToMember(){
        currentMember.addTime();//logic skal ændres.
-
     }
     public void addCompetitionToMember(){
        // currentMember.addC
