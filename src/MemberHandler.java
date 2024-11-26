@@ -93,16 +93,20 @@ public class MemberHandler {
 
     public static void main(String[] args) {
         try {
-            MemberHandler.createMember();
-            MemberHandler.createMember();
-            MemberHandler.createMember();
+            memberList = DatabaseHandler.load();
         }catch (Exception e){
-            System.out.println("Kunne ikke oprette medlem");
+            System.out.println("Kunne ikke læse fil");
             e.printStackTrace();
         }
 
         try {
             System.out.println(MemberHandler.smartSearch());
+            System.out.println(MemberHandler.smartSearch());
+            System.out.println(MemberHandler.smartSearch());
+            System.out.println(MemberHandler.smartSearch());
+            System.out.println(MemberHandler.smartSearch());
+            System.out.println(MemberHandler.smartSearch());
+
         }
         catch (MemberNotFoundException e){
             System.out.println("Medlem ikke fundet i databasen");
