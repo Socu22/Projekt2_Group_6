@@ -8,43 +8,42 @@ public class UserInterface {
     static Scanner scanner = new Scanner(System.in);
 
 
-    public void start_interface_User(String name){
+
+
+
+
+    public void start_interface_User(){
         while (running) {
-            System.out.println("Tast 1 for at se specifik medlemoplysninger:");
-            System.out.println("Tast 2 for at registrer nyt medlem: ");
-            System.out.println("Tast 3 for at tilføj reslutater: ");
-            System.out.println("Tast 4 for at se alle reslutater: ");
-            inputInt = scanner.nextInt();
+            loginUser();
+            System.out.println("Velkommen " + currentMember.getName());
+            System.out.println("Tast 1 for at registrer tid for medlem: ");
+            System.out.println("Tast 2 for at tilføj reslutater: ");
+            System.out.println("Tast 3 for at se alle reslutater: ");
+            try {
+                inputInt = InputHandler.inputInt("Vælg et af følgende valg: ");
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
+            }
+
 
 
 
             switch (inputInt) {
                 case 1:
-                    //get current member
-                    System.out.println();
-                    try {
-                        currentMember = MemberHandler.smartSearch();
-                    } catch (MemberNotFoundException e) {
-                        System.out.println("medlem ikke fundet");
-                    } catch (InvalidInputException e) {
-                        System.out.println("Fejl i input");
-                    }
-                    break;
-                case 2:
                     //create Member
                     addTimeToMember();
                     break;
-                case 3:
+                case 2:
                     //Add Competition to Member  object-
                     addCompetitionToMember();
-                case 4:
+                case 3:
                     //View swimming results
                     viewTimesForMember();
-                case 5:
+                case 4:
                    //show competitions for member
                     viewCompetitionForMember();
 
-                case 6:
+                case 5:
 
                     back();
                     break;
@@ -53,11 +52,20 @@ public class UserInterface {
         }
     }
 
-
-
+    public void loginUser() {
+        try {
+            currentMember= MemberHandler.smartSearch();
+            System.out.println(currentMember);
+        } catch (MemberNotFoundException e) {
+            System.out.println(e.toString());
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void addTimeToMember(){
-       currentMember.addTime();//logic skal ændres.
+       currentMember.addTime();// logic skal ændres.
+
     }
     public void addCompetitionToMember(){
        // currentMember.addC

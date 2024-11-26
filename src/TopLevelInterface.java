@@ -61,11 +61,6 @@ public class TopLevelInterface {
 
     // Method for User-login
     private static void userLogin(Scanner scanner) {
-        System.out.print("Indtast dit brugernavn: ");
-        String usernameForUser = scanner.nextLine();
-        System.out.println("Velkommen, " + usernameForUser + "!");
-
-        startUserInterface.start_interface_User(usernameForUser);
-
+       startUserInterface.start_interface_User();
     }
 }
