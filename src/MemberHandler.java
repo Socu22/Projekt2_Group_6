@@ -56,6 +56,10 @@ public class MemberHandler {
         }
     }
 
+    public static Member getNewestMember(){
+        return memberList.getLast();
+    }
+
     public static void createMember() throws InvalidInputException{
         System.out.println("Du har valgt at oprette et nyt medlem i svømmeklubben. Hvilken type medlem skal det være?");
         System.out.println("1: Standard medlem \n2: Passivt medlem \n3:Konkurrence medlem");
