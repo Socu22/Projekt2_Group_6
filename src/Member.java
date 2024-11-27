@@ -65,6 +65,11 @@ public class Member {
         }
     }
 
+    public Contingent getContingent() {
+        return contingent;
+    }
+
+
     public String getName(){
         return name;
     }
@@ -75,6 +80,10 @@ public class Member {
 
     public int getAge(){
         return age;
+    }
+
+    public double getDebt() {
+        return this.getContingent().getDebt();
     }
 
     public void payDebt(){
@@ -108,10 +117,8 @@ public class Member {
     }
 
     void addTime(){
-        LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere: ");
-
-        System.out.println("Only supported: RYG, MAVE");
-
+        //LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere: ");
+        LocalDate dateOfTime = LocalDate.of(2024,01,01); //til test
         String chosenDiscipline=InputHandler.inputString("Input en Discipline til din dato");
 
         int distanceSwam = InputHandler.inputInt("Indtast den distance du har svømmet: ");

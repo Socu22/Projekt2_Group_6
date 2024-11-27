@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class MemberHandler {
 
-    public static ArrayList<Member> memberList = DatabaseHandler.load();
+    private static ArrayList<Member> memberList = DatabaseHandler.load();
 
     static Member searchByName(String name) throws MemberNotFoundException, InvalidInputException, NullPointerException{
         ArrayList<Member> foundList = new ArrayList<>();
@@ -43,7 +43,7 @@ public class MemberHandler {
 
     }
 
-    public static Member smartSearch() throws MemberNotFoundException, InvalidInputException{
+    public static Member smartSearch() throws MemberNotFoundException, InvalidInputException,NullPointerException{
         String userInput = InputHandler.inputString("Indtast navn eller ID på den ønskede bruger:");
         int idInput = 0;
         try{
@@ -62,7 +62,7 @@ public class MemberHandler {
         return memberList.getLast();
     }
 
-    public static void createMember() throws InvalidInputException{
+    public static void createMember() throws InvalidInputException,NullPointerException{
         System.out.println("Du har valgt at oprette et nyt medlem i svømmeklubben. Hvilken type medlem skal det være?");
         System.out.println("1: Standard medlem \n2: Passivt medlem \n3: Konkurrence medlem");
 

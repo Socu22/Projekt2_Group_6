@@ -3,8 +3,10 @@ import java.time.LocalDate;
 public class Contingent {
     private double amount;
     private double debt;
+    private Member member;
 
     public Contingent(Member m){
+        this.member=m;
         if (m.getAge()<18){
             amount = 1000;
         } else if (m.getAge()>60) {
@@ -35,7 +37,12 @@ public class Contingent {
         debt -= paidAmount;
     }
 
+
+
+
     public String toString(){
         return "\tKontingent årligt: " + amount + "\n\tGæld: " + debt;
     }
+
+
 }

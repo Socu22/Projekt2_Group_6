@@ -1,4 +1,6 @@
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AdminInterface {
     public static int input=-1;
@@ -35,10 +37,13 @@ public class AdminInterface {
                     payDebtForMember();
                     break;
                 case 5:
-                    SortedByBestTimesPerDisciplin();
+                    topFiveForEachDiscipline();
+                    break;
+                case 6:
+                    printAllNonPaidMembers();
                     break;
 
-                case 6:
+                case 7:
 
                     back();
                     break;
@@ -94,71 +99,40 @@ public class AdminInterface {
         running=false;
 
     }
+    public void topFiveForEachDiscipline(){
+        List<TrainTime> trainTimes = new ArrayList<>();
 
-    public void TopFiveBestTimesPerDisciplin(){
-        List<TrainTime> topFive = new ArrayList<>();
-
-        for (int i = 0; i < MemberHandler.getMemberList().size(); i++) {
-            currentMember = MemberHandler.getMemberList().get(i);
-            for (int j = 0; j < currentMember.getTrainTimeList().size(); j++) {
-                topFive.add(currentMember.getTrainTimeList().get(j));
-
-            }
-        }
-        //should sort from best time to worst and discipline
-        Collections.sort(topFive, Comparator.comparingDouble(TrainTime::getDuration).thenComparing(TrainTime::getDiscipline).thenComparing(TrainTime::getDistance));
-        for (int i = 0; i < topFive.size() ; i++) {
-
+        for (Member m : MemberHandler.getMemberList()){
+            trainTimes.addAll(m.getTrainTimeList());
 
         }
-        List<TrainTime> top5MAVE= new ArrayList<>();
-        TrainTime currentMave;
-        List<TrainTime> top5RYG= new ArrayList<>();
-        TrainTime currentRYG;
-        int x=1;
-        /*for (TrainTime t : topFive){
 
-           if(x!=1){
+        // Group by discipline and distance
+        Map<String, List<TrainTime>> grouped = trainTimes.stream()
+                .collect(Collectors.groupingBy(
+                        tt -> tt.getDiscipline() + " " + tt.getDistance() + "m"
+                ));
 
-           }
-           x++;
-        }
+        // Sort each group
+        grouped.forEach((key, list) -> {
+            list.sort(Comparator.comparingDouble(TrainTime::getDuration)
+                    .thenComparing(TrainTime::getDate));
+        });
 
-         */
-
-
-
-
-
-
+        // Print each group
+        grouped.forEach((key, list) -> {
+            System.out.println("Group: " + key);
+            list.forEach(System.out::println);
+        });
     }
-    // Beregner top 5 resultater for samtlige discipliner
-    public void SortedByBestTimesPerDisciplin() {
+   /* public void printAllNonPaidMembers(){
+        List<Member> members = MemberHandler.getMemberList();
 
-        List<TrainTime> topFive = new ArrayList<>();
-
-        for (int i = 0; i < MemberHandler.getMemberList().size(); i++) {
-            currentMember = MemberHandler.getMemberList().get(i);
-            for (int j = 0; j < currentMember.getTrainTimeList().size(); j++) {
-                topFive.add(currentMember.getTrainTimeList().get(j));
-
-            }
-        }
-        //should sort from best time to worst, and sorted in distance
-        Collections.sort(topFive, Comparator.comparingDouble(TrainTime::getDuration).thenComparing(TrainTime::getDiscipline).thenComparing(TrainTime::getDistance));
-
-        //this will work it will make a "\t" more for every disciplin after RYG, so you can make out the difference between different disciplines, best fix until now
-        for (TrainTime t : topFive) {
-            if (t.getDiscipline().equals("RYG")) {
-                System.out.println(t);
-
-
-
-            }
-            if (t.getDiscipline().equals("MAVE")) {
-                System.out.println("\t" + t);
-            }
-
-        }
+        Collections.sort(members,Comparator.comparing(Member::getDebt));
+        System.out.println(members);
     }
+
+    */
+
+
 }

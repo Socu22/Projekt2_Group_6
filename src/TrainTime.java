@@ -43,8 +43,12 @@ public class TrainTime {
         return distance;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
     public String toString(){
-        return modtagetMemberName+"[id("+modtagetMemberID+")]"+date + " - " + discipline + " " + distance + "m - " + df.format(duration) + secOrMin;
+        return "\t"+modtagetMemberName+"[id("+modtagetMemberID+")]"+date + " - " + discipline + " " + distance + "m - " + df.format(duration) + secOrMin;
     }
 
     public static void main(String[] args) {

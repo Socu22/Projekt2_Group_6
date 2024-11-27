@@ -24,10 +24,20 @@ public class TopLevelInterface {
             choice = InputHandler.inputInt("Vælg et af følgende valg: ");
             switch (choice) {
                 case 1:
-                    adminLogin();
+                    try {
+                        adminLogin();
+
+                    }catch (NullPointerException e){
+
+                    }
                     break;
                 case 2:
-                    userLogin();
+                    try {
+                        userLogin();
+
+                    }catch (NullPointerException e){
+
+                    }
                     break;
                 case 3:
                     System.out.println("Program afsluttes. Farvel!");
