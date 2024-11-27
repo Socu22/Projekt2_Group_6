@@ -58,7 +58,7 @@ public class DatabaseHandler {
                     String discipline = fields[2];
                     int distance = Integer.parseInt(fields[3]);
                         // Lokale variabler bliver tilføjet til traintime objektet
-                    TrainTime trainTime = new TrainTime(date, duration, discipline, distance);
+                    TrainTime trainTime = new TrainTime(currentMember,date, duration, discipline, distance);
                     currentMember.getTrainTimeList().add(trainTime); //Traintime objektet bliver tilføjer til current Member objektet
                 }
             }
