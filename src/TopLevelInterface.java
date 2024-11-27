@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class TopLevelInterface {
@@ -17,6 +18,7 @@ public class TopLevelInterface {
             System.out.println("2. Login som Bruger");
             System.out.println("3. Afslut program");
             System.out.print("Vælg en mulighed: ");
+
 
             int choice;
             choice = InputHandler.inputInt("Vælg et af følgende valg: ");
@@ -41,16 +43,20 @@ public class TopLevelInterface {
 
     // Method for admin-login
     private static void adminLogin() {
+        AdminInterface.setRunning(true);
         System.out.print("Indtast admin password: ");
+
         String password;
+        password=null;
         password = InputHandler.inputString("Skriv adgangskode: ");
-        if (password.equals(ADMIN_PASSWORD)) {
+        if (Objects.equals(password, ADMIN_PASSWORD)) {
             System.out.println("Velkommen, Admin!");
             startAdminInterface.start_interface_Admin();
             // If PW is wrong
         } else {
             System.out.println("Forkert password. Adgang nægtet.");
         }
+
     }
 
 
