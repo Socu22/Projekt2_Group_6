@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class MemberHandler {
 
-    public static ArrayList<Member> memberList = new ArrayList<>();
+    public static ArrayList<Member> memberList = DatabaseHandler.load();
 
     static Member searchByName(String name) throws MemberNotFoundException, InvalidInputException{
         ArrayList<Member> foundList = new ArrayList<>();
