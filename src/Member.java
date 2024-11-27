@@ -76,9 +76,6 @@ public class Member {
     public int getAge(){
         return age;
     }
-    public ArrayList<TrainTime> getTrainTimeList() {
-        return trainTimeList;
-    }
 
     public void payDebt(){
         double amountToPay;
