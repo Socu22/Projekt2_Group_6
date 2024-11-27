@@ -27,6 +27,14 @@ public class TrainTime {
         }
     }
 
+    public double getDuration() {
+        return duration;
+    }
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
     public String toString(){
         return date + " - " + discipline.toUpperCase() + " " + distance + "m - " + df.format(duration) + secOrMin;
     }
