@@ -109,7 +109,9 @@ public class Member {
 
     void addTime(){
         LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere: ");
-        String chosenDiscipline = InputHandler.inputString("Indtast navnet på den disciplin tiden er sat i: ");
+
+        String chosenDiscipline=InputHandler.inputString("Input en Discipline til din dato");
+
         int distanceSwam = InputHandler.inputInt("Indtast den distance du har svømmet: ");
         double durationInSec = InputHandler.inputDouble("Indtast tiden det tog dig i sekunder: ");
         this.trainTimeList.add(new TrainTime(this,dateOfTime, durationInSec, chosenDiscipline, distanceSwam));
