@@ -35,7 +35,7 @@ public class AdminInterface {
                     payDebtForMember();
                     break;
                 case 5:
-                    TopFiveBestTimesPerDisciplin();
+                    SortedByBestTimesPerDisciplin();
                     break;
 
                 case 6:
@@ -69,8 +69,7 @@ public class AdminInterface {
         try{
             MemberHandler.createMember();
             currentMember = MemberHandler.getNewestMember();
-            System.out.println("Tast 1 for betaling af nuværende gæld.");
-            System.out.println("Tast 2 for at gå tilbage.");
+            System.out.println("Genvej(tast): betal gæld(1), quit(2) ");
             input=InputHandler.inputInt("Vælg et af følgende valg: ");
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
@@ -96,21 +95,70 @@ public class AdminInterface {
 
     }
 
-    // Beregner top 5 resultater for samtlige discipliner
     public void TopFiveBestTimesPerDisciplin(){
-
         List<TrainTime> topFive = new ArrayList<>();
 
         for (int i = 0; i < MemberHandler.getMemberList().size(); i++) {
-            currentMember=MemberHandler.getMemberList().get(i);
-            for (int j = 0; j < currentMember.getTrainTimeList().size() ; j++) {
-                topFive.add(currentMember.getTrainTimeList().get(i));
+            currentMember = MemberHandler.getMemberList().get(i);
+            for (int j = 0; j < currentMember.getTrainTimeList().size(); j++) {
+                topFive.add(currentMember.getTrainTimeList().get(j));
 
             }
         }
         //should sort from best time to worst and discipline
-        Collections.sort(topFive, Comparator.comparingDouble(TrainTime::getDuration).thenComparing(TrainTime::getDiscipline).reversed());
-        System.out.println(topFive);
+        Collections.sort(topFive, Comparator.comparingDouble(TrainTime::getDuration).thenComparing(TrainTime::getDiscipline).thenComparing(TrainTime::getDistance));
+        for (int i = 0; i < topFive.size() ; i++) {
 
+
+        }
+        List<TrainTime> top5MAVE= new ArrayList<>();
+        TrainTime currentMave;
+        List<TrainTime> top5RYG= new ArrayList<>();
+        TrainTime currentRYG;
+        int x=1;
+        /*for (TrainTime t : topFive){
+
+           if(x!=1){
+
+           }
+           x++;
+        }
+
+         */
+
+
+
+
+
+
+    }
+    // Beregner top 5 resultater for samtlige discipliner
+    public void SortedByBestTimesPerDisciplin() {
+
+        List<TrainTime> topFive = new ArrayList<>();
+
+        for (int i = 0; i < MemberHandler.getMemberList().size(); i++) {
+            currentMember = MemberHandler.getMemberList().get(i);
+            for (int j = 0; j < currentMember.getTrainTimeList().size(); j++) {
+                topFive.add(currentMember.getTrainTimeList().get(j));
+
+            }
+        }
+        //should sort from best time to worst, and sorted in distance
+        Collections.sort(topFive, Comparator.comparingDouble(TrainTime::getDuration).thenComparing(TrainTime::getDiscipline).thenComparing(TrainTime::getDistance));
+
+        //this will work it will make a "\t" more for every disciplin after RYG, so you can make out the difference between different disciplines, best fix until now
+        for (TrainTime t : topFive) {
+            if (t.getDiscipline().equals("RYG")) {
+                System.out.println(t);
+
+
+
+            }
+            if (t.getDiscipline().equals("MAVE")) {
+                System.out.println("\t" + t);
+            }
+
+        }
     }
 }

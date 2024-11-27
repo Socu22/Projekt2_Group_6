@@ -79,7 +79,8 @@ public class Member {
 
     public void payDebt(){
         double amountToPay;
-        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld, indtast hvor meget: ");      //DUMMY NUMBER, USE INPUTHANDLER
+        System.out.println("Debt for "+this.name+":"+contingent.getDebt());
+        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld"+"("+", indtast hvor meget: ");      //DUMMY NUMBER, USE INPUTHANDLER
         this.contingent.payDebt(amountToPay);
     }
 
@@ -111,7 +112,7 @@ public class Member {
         String chosenDiscipline = InputHandler.inputString("Indtast navnet på den disciplin tiden er sat i: ");
         int distanceSwam = InputHandler.inputInt("Indtast den distance du har svømmet: ");
         double durationInSec = InputHandler.inputDouble("Indtast tiden det tog dig i sekunder: ");
-        this.trainTimeList.add(new TrainTime(dateOfTime, durationInSec, chosenDiscipline, distanceSwam));
+        this.trainTimeList.add(new TrainTime(this,dateOfTime, durationInSec, chosenDiscipline, distanceSwam));
     }
 
     public static void main(String[] args) {

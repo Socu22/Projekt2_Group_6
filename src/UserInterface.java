@@ -28,7 +28,7 @@ public class UserInterface {
                     break;
                 case 2:
                     //Add Competition to Member  object-
-                    addCompetitionToMember();
+                    addTimeToMember();
                 case 3:
                     //View swimming results
                     viewTimesForMember();
@@ -42,6 +42,10 @@ public class UserInterface {
                     break;
             }
         }
+    }
+
+    public static void setRunning(boolean running) {
+        UserInterface.running = running;
     }
 
     public void loginUser() {

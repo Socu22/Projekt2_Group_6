@@ -23,6 +23,10 @@ public class Contingent {
         return amount;
     }
 
+    public double getDebt() {
+        return debt;
+    }
+
     void addDebt(){
         debt += amount;
     }

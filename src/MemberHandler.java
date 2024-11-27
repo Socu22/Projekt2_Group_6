@@ -5,7 +5,7 @@ public class MemberHandler {
 
     public static ArrayList<Member> memberList = new ArrayList<>();
 
-    static Member searchByName(String name) throws MemberNotFoundException, InvalidInputException{
+    static Member searchByName(String name) throws MemberNotFoundException, InvalidInputException, NullPointerException{
         ArrayList<Member> foundList = new ArrayList<>();
         System.out.println("Indtast navn: ");
         String searchName = name;
@@ -30,7 +30,8 @@ public class MemberHandler {
         throw new MemberNotFoundException();
     }
 
-    static Member searchByID(int id) throws MemberNotFoundException{
+    static Member searchByID(int id) throws MemberNotFoundException, NullPointerException {
+
         System.out.println("Indtast ID: ");
         int searchID = id;
         for (Member m: memberList){
@@ -39,6 +40,7 @@ public class MemberHandler {
             }
         }
         throw new MemberNotFoundException();
+
     }
 
     public static Member smartSearch() throws MemberNotFoundException, InvalidInputException{

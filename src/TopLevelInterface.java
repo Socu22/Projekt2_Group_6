@@ -62,6 +62,7 @@ public class TopLevelInterface {
 
     // Method for User-login
     private static void userLogin() {
+        UserInterface.setRunning(true);
        startUserInterface.start_interface_User();
     }
 }
