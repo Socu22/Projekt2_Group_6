@@ -110,6 +110,8 @@ public class Member {
     void addTime(){
         LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere: ");
 
+        System.out.println("Only supported: RYG, MAVE");
+
         String chosenDiscipline=InputHandler.inputString("Input en Discipline til din dato");
 
         int distanceSwam = InputHandler.inputInt("Indtast den distance du har svømmet: ");
