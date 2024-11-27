@@ -1,4 +1,7 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class AdminInterface {
@@ -89,6 +92,18 @@ public class AdminInterface {
 
     // Beregner top 5 resultater for samtlige discipliner
     public void bestTimesPerDisciplin(){
-        currentMember.viewTimes();
+
+        ArrayList<TrainTime> topFive = new ArrayList<>();
+
+        for (int i = 0; i < MemberHandler.getMemberList().size(); i++) {
+            currentMember=MemberHandler.getMemberList().get(i);
+            for (int j = 0; j < currentMember.getTrainTimeList().size() ; j++) {
+                currentMember.getTrainTimeList().sort(Comparator.comparingDouble(Double::doubleValue));
+
+            }
+        }
+        for(Member m : MemberHandler.getMemberList()){
+
+        }
     }
 }

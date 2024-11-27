@@ -90,6 +90,10 @@ public class MemberHandler {
         }
     }
 
+    public static ArrayList<Member> getMemberList(){
+        return memberList;
+    }
+
 
     public static void main(String[] args) {
         try {

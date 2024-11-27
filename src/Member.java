@@ -94,6 +94,10 @@ public class Member {
             System.out.println(t);
         }
     }
+    public ArrayList<TrainTime> getTrainTimeList(){
+        return trainTimeList;
+    }
+
     public  String toCSV(){
         return memberType + "," + name + "," + id + "," + birthdate + "," + signUpDate + "," + age;
     }
