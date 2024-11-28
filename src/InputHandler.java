@@ -71,7 +71,6 @@ public class InputHandler {
             switch (choice) {
                 case 1:
                     result = LocalDate.now();
-                    System.out.println("Dags dato valgt: " + result);
                     return result;
 
                 case 2:
