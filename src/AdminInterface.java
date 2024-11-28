@@ -16,6 +16,8 @@ public class AdminInterface {
             System.out.println("Tast 3 for at tilføje gæld til medlem: ");
             System.out.println("Tast 4 for at registerer betalt gæld for medlem: ");
             System.out.println("Tast 5 for finde top 5 i alle disicpilner : ");
+            System.out.println("Tast 6 for at se medlemmer gæld (IKKE UNDERSTØTTET ENDNU)");
+            System.out.println("Tast 7 for at gå tilbage");
             input= InputHandler.inputInt("Vælg et af følgende valg: ");
 
 
@@ -42,7 +44,6 @@ public class AdminInterface {
                 case 6:
                    // printAllNonPaidMembers();
                     break;
-
                 case 7:
 
                     back();
