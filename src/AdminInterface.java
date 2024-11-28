@@ -102,14 +102,16 @@ public class AdminInterface {
     public void topFiveForEachDiscipline(){
        TimeSort.topFiveForEachDiscipline();
     }
-   /* public void printAllNonPaidMembers(){
-        List<Member> members = MemberHandler.getMemberList();
+   /*public void printAllNonPaidMembers(){
 
-        Collections.sort(members,Comparator.comparing(Member::getDebt));
-        System.out.println(members);
+       for (int i = 0; i < MemberHandler.getMemberList().size() ; i++) {
+           if(MemberHandler.getMemberList().ge)
+
+       }
     }
 
     */
+
 
 
 }

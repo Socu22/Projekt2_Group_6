@@ -14,7 +14,7 @@ public class TimeSort {
 //Sorts everything about the Member and TrainTimes
     public static void sorter(){
             //adds all traintimes to traintimes Arraylist
-        for (Member m : MemberHandler.getMemberList()){
+        for (Member m : MemberHandler.loadFromDatabase()){
             trainTimes.addAll(m.getTrainTimeList());
 
         }

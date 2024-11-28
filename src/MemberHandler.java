@@ -34,10 +34,11 @@ public class MemberHandler {
         return memberList;
     }
 
-    static void loadFromDatabase(){
+    static ArrayList<Member> loadFromDatabase(){
         System.out.println("Indlæser database...\n.\n.\n.");
         memberList = DatabaseHandler.load();
         System.out.println("Liste indlæst.");
+        return memberList;
     }
 
     static Member searchByID(int id) throws MemberNotFoundException{
