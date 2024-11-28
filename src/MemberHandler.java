@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class MemberHandler {
 
-    private static ArrayList<Member> memberList = DatabaseHandler.load();
+    public static ArrayList<Member> memberList = new ArrayList<>();
 
-    static Member searchByName(String name) throws MemberNotFoundException, InvalidInputException, NullPointerException{
+    static Member searchByName(String name) throws MemberNotFoundException, InvalidInputException{
         ArrayList<Member> foundList = new ArrayList<>();
         System.out.println("Indtast navn: ");
         String searchName = name;
@@ -30,8 +30,17 @@ public class MemberHandler {
         throw new MemberNotFoundException();
     }
 
-    static Member searchByID(int id) throws MemberNotFoundException, NullPointerException {
+    public static ArrayList<Member> getMemberList(){
+        return memberList;
+    }
 
+    static void loadFromDatabase(){
+        System.out.println("Indlæser database...\n.\n.\n.");
+        memberList = DatabaseHandler.load();
+        System.out.println("Liste indlæst.");
+    }
+
+    static Member searchByID(int id) throws MemberNotFoundException{
         System.out.println("Indtast ID: ");
         int searchID = id;
         for (Member m: memberList){
@@ -40,10 +49,9 @@ public class MemberHandler {
             }
         }
         throw new MemberNotFoundException();
-
     }
 
-    public static Member smartSearch() throws MemberNotFoundException, InvalidInputException,NullPointerException{
+    public static Member smartSearch() throws MemberNotFoundException, InvalidInputException{
         String userInput = InputHandler.inputString("Indtast navn eller ID på den ønskede bruger:");
         int idInput = 0;
         try{
@@ -62,7 +70,9 @@ public class MemberHandler {
         return memberList.getLast();
     }
 
-    public static void createMember() throws InvalidInputException,NullPointerException{
+
+
+    public static void createMember() throws InvalidInputException{
         System.out.println("Du har valgt at oprette et nyt medlem i svømmeklubben. Hvilken type medlem skal det være?");
         System.out.println("1: Standard medlem \n2: Passivt medlem \n3: Konkurrence medlem");
 
@@ -90,10 +100,6 @@ public class MemberHandler {
                 System.out.println("Ugyldigt input.");
                 break;
         }
-    }
-
-    public static ArrayList<Member> getMemberList(){
-        return memberList;
     }
 
 
