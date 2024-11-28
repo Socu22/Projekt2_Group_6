@@ -41,6 +41,11 @@ public class Member {
             }
         }
     }
+
+    public static void setIdCounter(int i){
+        idCounter = i;
+    }
+
     public Member (String name, LocalDate birthdate, LocalDate signUpDate, int id){
         this.name = name;
         this.birthdate = birthdate;
@@ -106,6 +111,14 @@ public class Member {
     }
     public ArrayList<TrainTime> getTrainTimeList(){
         return trainTimeList;
+    }
+
+    public LocalDate getBirthdate(){
+        return birthdate;
+    }
+
+    public LocalDate getSignUpDate(){
+        return signUpDate;
     }
 
     public  String toCSV(){

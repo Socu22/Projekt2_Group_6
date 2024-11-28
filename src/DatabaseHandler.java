@@ -23,6 +23,7 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
     }
+
     public static ArrayList<Member> load() { //Metode til at loade hele Databse.csv filen og gør det til en Arraylist
         ArrayList<Member> Memberlist = new ArrayList<>();
         try {
@@ -62,26 +63,61 @@ public class DatabaseHandler {
                     currentMember.getTrainTimeList().add(trainTime); //Traintime objektet bliver tilføjer til current Member objektet
                 }
             }
+            Member.setIdCounter(currentMember.getID()+1);
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return Memberlist;
     }
+
     public static void save() {
-      /*  String line = "";
-        ArrayList<Member> gemtArrayList = new ArrayList<>();
-        gemtArrayList = MemberHandler.memberList;
-        String[] gemtArray;
-        gemtArray = gemtArrayList.spliterator(line, ",");
-        if (MemberList)*/
+        //ArrayList<Member> memberlist = MemberHandler.getMemberList();
+        ArrayList<Member> memberlist = new ArrayList<>();
+        Member m1 = new Member("Søren Brostrøm", LocalDate.of(2001, 03,01));
+        Member m2 = new PassiveMember("Camilla Fagerstrøm", LocalDate.of(1976,9,15));
+        m1.addTime();
+        m1.addTime();
+        m2.addTime();
+        memberlist.add(m1);
+        memberlist.add(m2);
+        System.out.println("Liste oprettet, medlemmer tilføjet");
+        try {
+            FileWriter writer = new FileWriter("TestCSVforSave", false);
+            //Loop igennem listen af medlemmer
+            System.out.println("Writer oprettet");
+            for (Member m: memberlist) {
+                System.out.println(m);
+                //Programmet checker hvilken type medlem det pågældende medlem er
+                if (m instanceof PassiveMember) {
+                    writer.write("Passivmedlem," + memberInfoToCSV(m));
+                }
+                if (m instanceof Member && !(m instanceof PassiveMember)) {
+                    writer.write("Aktivmedlem," + memberInfoToCSV(m));
+                }
+                writer.write("\n");
+                for (TrainTime t: m.getTrainTimeList()){
+                    writer.write(timeInfoToCSV(t));
+                    writer.write("\n");
+                }
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public static String memberInfoToCSV(Member m){
+        return m.getName() + "," + m.getID() + "," + m.getBirthdate() + "," +  m.getSignUpDate() + "," +  m.getContingent().getAmount();
+    }
 
+    public static String timeInfoToCSV(TrainTime t){
+        return t.getDate() + "," + t.getDuration() + "," + t.getDiscipline() + "," + t.getDistance();
+    }
 
     public static void writeToFile(Member member) { // Metode til at tilføje et Member til Database.csv filen
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(path, true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(path, false));
             bw.write(member.toCSV());
             bw.newLine();
             bw.close();
@@ -91,7 +127,7 @@ public class DatabaseHandler {
     }
 
     public static void main(String[] args) {
-
+        /*
         ArrayList<Member> members = load();
         for (Member member : members) {
             System.out.println(member.getName() + " - " + member.getTrainTimeList().size() + " training times");
@@ -100,6 +136,8 @@ public class DatabaseHandler {
             }
         }
 
+         */
 
+        save();
     }
 }
