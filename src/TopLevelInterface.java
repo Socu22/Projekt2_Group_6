@@ -5,9 +5,8 @@ public class TopLevelInterface {
     public static final AdminInterface startAdminInterface= new AdminInterface();
     public static final UserInterface startUserInterface= new UserInterface();
 
-
     // Admin password login
-    private static final String ADMIN_PASSWORD = "delfinensvømmer";
+    private static final String ADMIN_PASSWORD = "melon";
 
     public void start(){
         boolean running = true;
