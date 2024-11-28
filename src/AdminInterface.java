@@ -40,7 +40,7 @@ public class AdminInterface {
                     topFiveForEachDiscipline();
                     break;
                 case 6:
-                    printAllNonPaidMembers();
+                   // printAllNonPaidMembers();
                     break;
 
                 case 7:
@@ -100,30 +100,7 @@ public class AdminInterface {
 
     }
     public void topFiveForEachDiscipline(){
-        List<TrainTime> trainTimes = new ArrayList<>();
-
-        for (Member m : MemberHandler.getMemberList()){
-            trainTimes.addAll(m.getTrainTimeList());
-
-        }
-
-        // Group by discipline and distance
-        Map<String, List<TrainTime>> grouped = trainTimes.stream()
-                .collect(Collectors.groupingBy(
-                        tt -> tt.getDiscipline() + " " + tt.getDistance() + "m"
-                ));
-
-        // Sort each group
-        grouped.forEach((key, list) -> {
-            list.sort(Comparator.comparingDouble(TrainTime::getDuration)
-                    .thenComparing(TrainTime::getDate));
-        });
-
-        // Print each group
-        grouped.forEach((key, list) -> {
-            System.out.println("Group: " + key);
-            list.forEach(System.out::println);
-        });
+       TimeSort.topFiveForEachDiscipline();
     }
    /* public void printAllNonPaidMembers(){
         List<Member> members = MemberHandler.getMemberList();
