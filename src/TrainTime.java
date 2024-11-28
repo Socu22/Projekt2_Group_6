@@ -7,6 +7,7 @@ public class TrainTime implements Comparable<TrainTime>{
     private int modtagetMemberID;
     private LocalDate date;         //Remember which day the time was set
     private double duration;        //How fast was the trainging
+    private double durationinSec;
     private String discipline;      //The swimming discipline
     private int distance;           //The Distance swam
     private double performance;     //The ratio of Time to distance to measure performance
@@ -17,10 +18,15 @@ public class TrainTime implements Comparable<TrainTime>{
         this.date = date;
         this.performance = distance/timeSec;
         this.duration = setDuration(timeSec);
+        this.durationinSec = timeSec;
         this.discipline = discipline.toUpperCase();
         this.distance = distance;
         this.modtagetMemberName= member.getName();
         this.modtagetMemberID= member.getID();
+    }
+
+    double getDurationinSec(){
+        return durationinSec;
     }
 
     double setDuration(double durationInSec){

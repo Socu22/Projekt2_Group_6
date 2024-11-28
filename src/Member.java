@@ -41,6 +41,11 @@ public class Member {
             }
         }
     }
+
+    public static void setIdCounter(int i){
+        idCounter = i;
+    }
+
     public Member (String name, LocalDate birthdate, LocalDate signUpDate, int id){
         this.name = name;
         this.birthdate = birthdate;
@@ -108,6 +113,14 @@ public class Member {
         return trainTimeList;
     }
 
+    public LocalDate getBirthdate(){
+        return birthdate;
+    }
+
+    public LocalDate getSignUpDate(){
+        return signUpDate;
+    }
+
     public  String toCSV(){
         return memberType + "," + name + "," + id + "," + birthdate + "," + signUpDate + "," + age;
     }
@@ -118,9 +131,8 @@ public class Member {
 
     void addTime(){
         //LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere: ");
-        LocalDate dateOfTime = LocalDate.of(2024,01,01); //til test
-        String chosenDiscipline=InputHandler.inputString("Input en Discipline til din dato");
-
+        LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den satte tid:"); //til test
+        String chosenDiscipline=InputHandler.inputString("Input Disciplinen du har svømmet");
         int distanceSwam = InputHandler.inputInt("Indtast den distance du har svømmet: ");
         double durationInSec = InputHandler.inputDouble("Indtast tiden det tog dig i sekunder: ");
         this.trainTimeList.add(new TrainTime(this,dateOfTime, durationInSec, chosenDiscipline, distanceSwam));

@@ -7,7 +7,7 @@ public class TopLevelInterface {
 
 
     // Admin password login
-    private static final String ADMIN_PASSWORD = "lol123";
+    private static final String ADMIN_PASSWORD = "delfinensvømmer";
 
     public void start(){
         boolean running = true;
