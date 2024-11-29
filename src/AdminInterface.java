@@ -42,7 +42,7 @@ public class AdminInterface {
                     topFiveForEachDiscipline();
                     break;
                 case 6:
-                   // printAllNonPaidMembers();
+                   printAllNonPaidMembers();
                     break;
                 case 7:
 
@@ -103,15 +103,17 @@ public class AdminInterface {
     public void topFiveForEachDiscipline(){
        TimeSort.topFiveForEachDiscipline();
     }
-   /*public void printAllNonPaidMembers(){
-
-       for (int i = 0; i < MemberHandler.getMemberList().size() ; i++) {
-           if(MemberHandler.getMemberList().ge)
+   public void printAllNonPaidMembers(){
+        List<Member> loaded= MemberHandler.loadFromDatabase();
+       for (int i = 0; i < loaded.size() ; i++) {
+           if(loaded.get(i).getDebt()>0){
+               System.out.println(loaded.get(i).toString());
+           }
 
        }
     }
 
-    */
+
 
 
 
