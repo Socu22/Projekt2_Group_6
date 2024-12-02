@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TimeSort {
@@ -14,7 +11,7 @@ public class TimeSort {
 //Sorts everything about the Member and TrainTimes
     public static void sorter(){
             //adds all traintimes to traintimes Arraylist
-        for (Member m : MemberHandler.getMemberList()){
+        for (Member m : MemberHandler.loadFromDatabase()){
             trainTimes.addAll(m.getTrainTimeList());
 
         }
@@ -37,14 +34,43 @@ public class TimeSort {
     }
 //prints all options out
     public static void selectDicipline(){
+        ArrayList<String> hsukshit=new ArrayList<>();
+
         // Print Choices:
         System.out.println("Alle discipliner:  ");
         grouped.forEach((key,list)->{
-            System.out.println(key);
+            String[] discipline =(String[]) key.split(" ");
+            List<String> disciplineSplit = new ArrayList<>();
+            disciplineSplit
+                    .add(Arrays.asList(discipline[0]).toString());
+            int x;
+            boolean control=false;
+
+            hsukshit.add(discipline[0]);
+            for (int i = 0; i < hsukshit.size() ; i++) {
+                if(!hsukshit.get(i).equals(discipline[0])){
+                    control=true;
+
+                }
+                if (!control){
+                    hsukshit.add(discipline[0]);
+
+
+                }
+
+            }
+
+
+
+
+
+            System.out.println(hsukshit);
+
+
         });
 
         //your choice as a key
-         inputDiscipline = InputHandler.inputString("Skriv Disciplin: ").toUpperCase();
+         inputDiscipline = InputHandler.inputString("Vælg Disciplin: ").toUpperCase();
          inputDistance = InputHandler.inputString("Skriv Distance: ");
          keyInputSearch=inputDiscipline + " " + inputDistance + "m";
 
