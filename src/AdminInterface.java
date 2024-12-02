@@ -118,7 +118,6 @@ public class AdminInterface {
     }
     public void back(){
         running=false;
-
     }
     public void topFiveForEachDiscipline(){
        TimeSort.topFiveForEachDiscipline();
@@ -129,7 +128,6 @@ public class AdminInterface {
            if(loaded.get(i).getDebt()>0){
                System.out.println(loaded.get(i).toString());
            }
-
        }
     }
 

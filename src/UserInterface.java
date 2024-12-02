@@ -18,30 +18,70 @@ public class UserInterface {
             System.out.println("Tast 1 for at registrer tid for medlem: ");
             System.out.println("Tast 2 for at tilføj reslutater: ");
             System.out.println("Tast 3 for at se alle reslutater: ");
-            System.out.println("Tast 5 for at gå tilbage");
+            if (currentMember instanceof Member &&! (currentMember instanceof CompetitionMember)){
+                System.out.println("Tast 4 for at gå tilbage");
+            }
+            if (currentMember instanceof CompetitionMember){
+                System.out.println("Tast 4 for at tilføje et stævne.");
+                System.out.println("Tast 5 for at se dine stævner.");
+                System.out.println("Tast 6 for at gå tilbage.");
+            }
             inputInt = InputHandler.inputInt("Vælg et af følgende valg: ");
 
-
-            switch (inputInt) {
-                case 1:
-                    //create Member
-                    addTimeToMember();
-                    break;
-                case 2:
-                    //Add Competition to Member  object-
-                    addTimeToMember();
-                case 3:
-                    //View swimming results
-                    viewTimesForMember();
-                case 4:
-                   //show competitions for member
-                    viewCompetitionForMember();
-
-                case 5:
-
-                    back();
-                    break;
+            if (currentMember instanceof Member &&! (currentMember instanceof CompetitionMember)){
+                regularMenu();
             }
+            if (currentMember instanceof CompetitionMember){
+                compMenu();
+            }
+
+        }
+    }
+
+    public void regularMenu(){
+        switch (inputInt) {
+            case 1:
+                //create Member
+                addTimeToMember();
+                break;
+            case 2:
+                //Add Competition to Member  object-
+                addTimeToMember();
+            case 3:
+                //View swimming results
+                viewTimesForMember();
+            case 4:
+                //show competitions for member
+                back();
+                break;
+        }
+    }
+
+    public void compMenu(){
+        switch (inputInt) {
+            case 1:
+                //create Member
+                addTimeToMember();
+                break;
+            case 2:
+                //Add Competition to Member  object-
+                addTimeToMember();
+            case 3:
+                //View swimming results
+                viewTimesForMember();
+            case 4:
+                //show competitions for member
+                viewCompetitionForMember();
+
+            case 5:
+                //addCompetition()
+                break;
+            case 6:
+                //viewCompetitions()
+                break;
+            case 7:
+                back();
+                break;
         }
     }
 

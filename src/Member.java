@@ -2,9 +2,8 @@ import java.time.LocalDate;
 import java.time.Duration;
 import java.time.Period;
 import java.time.Year;
-import java.util.ArrayList;
+import java.util.*;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 public class Member {
     private String name;
@@ -110,6 +109,33 @@ public class Member {
             System.out.println(t);
         }
     }
+
+    public void viewTimes2(){
+        HashMap<String, Integer> disciplineMap = new HashMap<>();
+        for (TrainTime t: trainTimeList){
+            String discipline = t.getDiscipline();
+            disciplineMap.put(discipline, disciplineMap.getOrDefault(discipline, 0) +1);
+        }
+        for(Map.Entry<String, Integer> entry: disciplineMap.entrySet()){
+            String discipline = entry.getKey();
+            int amountOfTimes = entry.getValue();
+            System.out.println(discipline + "- " + amountOfTimes + " tider registreret i systemet");
+        }
+        System.out.println(disciplineMap);
+        String chosendiscipline = InputHandler.inputString("Indtast den disciplin du vil have dine tider vist for:");
+        ArrayList<TrainTime> sortedTimeListOfChosenDiscipline = new ArrayList<>();
+        for (TrainTime t2: trainTimeList){
+            if(t2.getDiscipline().equalsIgnoreCase(chosendiscipline)){
+                sortedTimeListOfChosenDiscipline.add(t2);
+            }
+        }
+        sortedTimeListOfChosenDiscipline.sort(null);
+        for (TrainTime t3: sortedTimeListOfChosenDiscipline){
+            System.out.println(t3);
+        }
+    }
+
+
     public ArrayList<TrainTime> getTrainTimeList(){
         return trainTimeList;
     }
@@ -141,8 +167,6 @@ public class Member {
         List<Member> loaded = MemberHandler.loadFromDatabase();
         Member member = this;
         Member changedMemberToPassive= new PassiveMember().clone(member);
-
-
     }
 
     */
@@ -153,7 +177,7 @@ public class Member {
         m1.addTime();
         m1.addTime();
         m1.addTime();
-        m1.viewTimes();
+        m1.viewTimes2();
     }
 }
 
