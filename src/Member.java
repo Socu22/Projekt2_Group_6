@@ -94,7 +94,7 @@ public class Member {
     public void payDebt(){
         double amountToPay;
         System.out.println("Debt for "+this.name+":"+contingent.getDebt());
-        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld"+"("+", indtast hvor meget: ");      //DUMMY NUMBER, USE INPUTHANDLER
+        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld"+"("+", indtast hvor meget: ");
         this.contingent.payDebt(amountToPay);
     }
 
