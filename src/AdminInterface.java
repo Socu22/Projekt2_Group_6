@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 public class AdminInterface {
     public static int input=-1;
+    public static String inputString;
     private Member currentMember;
     public static boolean running= true;
 
@@ -46,9 +47,10 @@ public class AdminInterface {
                    printAllNonPaidMembers();
                     break;
                 case 7:
-
                     back();
                     break;
+                case 8:
+                    deleteCurrentMember();
             }
         }
     }
@@ -86,6 +88,40 @@ public class AdminInterface {
                 currentMember.payDebt();
                 break;
             case 2:
+                break;
+        }
+    }
+
+
+    public void deleteCurrentMember(){
+        if (currentMember==null){
+            System.out.println("Du skal først søge efter medlem, før du kan slette.");
+            try {
+                setCurrentMember(); // Prompt the user to search for a member
+            } catch (Exception e) {
+                System.out.println("Kunne ikke finde medlemmet: " + e.getMessage());
+                return; // Exit if no member is found
+            }
+        }
+
+        System.out.println("Vil du slette medlem: " +getCurrentMember().getName());
+        System.out.println("Skriv 'Ja' hvis du vil slette " +getCurrentMember().getName());
+        System.out.println("og 'Nej' hvis du vil gå tilbage");
+        inputString=InputHandler.inputString("indtast valg");
+        switch (inputString){
+            case "Ja":
+                try{
+                    boolean removed = MemberHandler.getMemberList().removeIf(member -> member.equals(currentMember));
+                    if (removed) {
+                        System.out.println("Medlemmet " +currentMember.getName()+ "er blevet slettet.");
+                        currentMember=null;
+                    } else System.out.println("Medlemmet kunne ikke findes på listen");
+                } catch (Exception e) {
+                    System.out.println("der opstod en fejl under sletning af ");
+                }
+                back();
+                    break;
+            case "Nej":
                 break;
         }
     }
