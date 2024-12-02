@@ -25,6 +25,7 @@ public class AdminInterface {
                 case 1:
                     //get current member
                     setCurrentMember();
+                    System.out.println("Du er nu logget på medlemmet: "+currentMember);
                     break;
                 case 2:
                     //create Member
@@ -90,6 +91,11 @@ public class AdminInterface {
     }
 
     public void addDebtToMember(){
+
+        if (currentMember==null){
+            System.out.println("Du bedes vælge specifikt medlem først");
+            return;
+        }
         getCurrentMember().addDebt();
 
     }
