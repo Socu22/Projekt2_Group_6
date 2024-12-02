@@ -95,7 +95,7 @@ public class Member {
     public void payDebt(){
         double amountToPay;
         System.out.println("Debt for "+this.name+":"+contingent.getDebt());
-        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld"+"("+", indtast hvor meget: ");      //DUMMY NUMBER, USE INPUTHANDLER
+        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld"+"("+", indtast hvor meget: ");
         this.contingent.payDebt(amountToPay);
     }
 
@@ -131,8 +131,7 @@ public class Member {
     }
 
     void addTime(){
-        //LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere: ");
-        LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den satte tid:"); //til test
+        LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere:");
         String chosenDiscipline=InputHandler.inputString("Input Disciplinen du har svømmet");
         int distanceSwam = InputHandler.inputInt("Indtast den distance du har svømmet: ");
         double durationInSec = InputHandler.inputDouble("Indtast tiden det tog dig i sekunder: ");
