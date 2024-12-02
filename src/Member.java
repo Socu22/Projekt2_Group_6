@@ -4,6 +4,7 @@ import java.time.Period;
 import java.time.Year;
 import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 public class Member {
     private String name;
@@ -136,6 +137,15 @@ public class Member {
         double durationInSec = InputHandler.inputDouble("Indtast tiden det tog dig i sekunder: ");
         this.trainTimeList.add(new TrainTime(this,dateOfTime, durationInSec, chosenDiscipline, distanceSwam));
     }
+   /* public void setMemberStatus() {
+        List<Member> loaded = MemberHandler.loadFromDatabase();
+        Member member = this;
+        Member changedMemberToPassive= new PassiveMember().clone(member);
+
+
+    }
+
+    */
 
     public static void main(String[] args) {
         Member m1 = new PassiveMember("Frederik", LocalDate.of(1922, 02, 12));
@@ -154,4 +164,5 @@ class PassiveMember extends Member{
     public PassiveMember(String name, LocalDate birthdate, LocalDate signUpDate, int id) { //Contstructer 2
         super(name, birthdate, signUpDate, id);
     }
+
 }
