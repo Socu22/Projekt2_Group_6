@@ -48,7 +48,7 @@ public class AdminInterface {
                    printAllNonPaidMembers();
                     break;
                 case 7:
-
+                    outputMembersInDebt();
                     break;
                 case 8:
 
@@ -75,6 +75,11 @@ public class AdminInterface {
 
     public void outputMembersInDebt(){
         System.out.println("virker");
+        for (Member m: MemberHandler.getMemberList()){
+            if (m.getContingent().getDebt() > 0){
+                System.out.println(m.getName() + ": " + m.getDebt());
+            }
+        }
     }
 
     public Member getCurrentMember(){
