@@ -50,7 +50,7 @@ public class AdminInterface {
                     topFiveForEachDiscipline();
                     break;
                 case 7:
-                    printAllNonPaidMembers();
+                    outputMembersInDebt();
                     break;
                 case 8:
                     back();
@@ -153,13 +153,14 @@ public class AdminInterface {
     public void topFiveForEachDiscipline(){
        TimeSort.topFiveForEachDiscipline();
     }
-   public void printAllNonPaidMembers() {
-       List<Member> loaded = MemberHandler.loadFromDatabase();
-       for (int i = 0; i < loaded.size(); i++) {
-           if (loaded.get(i).getDebt() > 0) {
-               System.out.println(loaded.get(i).toString());
-           }
 
-       }
-   }
+    public void outputMembersInDebt(){
+        System.out.println("virker");
+        for (Member m: MemberHandler.getMemberList()){
+            if (m.getContingent().getDebt() > 0){
+                System.out.println(m.getName() + ": " + m.getDebt());
+            }
+        }
+    }
+
 }
