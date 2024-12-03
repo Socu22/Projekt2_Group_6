@@ -87,15 +87,9 @@ public class Member {
         return age;
     }
 
-    public double getDebt() {
-        return this.getContingent().getDebt();
-    }
-
     public void payDebt(){
-        double amountToPay;
-        System.out.println("Debt for "+this.name+":"+contingent.getDebt());
-        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld"+"("+", indtast hvor meget: ");
-        this.contingent.payDebt(amountToPay);
+        this.contingent.payDebt();
+        System.out.println("Kontingent betalt for " + this.getName());
     }
 
     public void addDebt(){

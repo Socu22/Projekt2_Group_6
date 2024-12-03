@@ -157,8 +157,8 @@ public class AdminInterface {
     public void outputMembersInDebt(){
         System.out.println("virker");
         for (Member m: MemberHandler.getMemberList()){
-            if (m.getContingent().getDebt() > 0){
-                System.out.println(m.getName() + ": " + m.getDebt());
+            if (m.getContingent().getDebt() == false){
+                System.out.println(m.getName() + ": Har ikke betalt");
             }
         }
     }

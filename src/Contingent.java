@@ -2,7 +2,8 @@ import java.time.LocalDate;
 
 public class Contingent {
     private double amount;
-    private double debt;
+    //private double debt;
+    private boolean isPaid;
     private Member member;
 
     public Contingent(Member m){
@@ -18,30 +19,37 @@ public class Contingent {
         if(m instanceof PassiveMember){
             amount = 500;
         }
-        debt = amount;
+        isPaid = false;
     }
 
     public double getAmount(){
         return amount;
     }
 
-    public double getDebt() {
-        return debt;
+    public boolean getDebt() {
+        return isPaid;
     }
 
     void addDebt(){
-        debt += amount;
+        isPaid = false;
     }
 
-    void payDebt(double paidAmount){
-        debt -= paidAmount;
+    void payDebt(){
+        isPaid = true;
     }
 
-
+    String paidString(){
+        if (isPaid == true){
+            return "har betalt";
+        }
+        else{
+            return "har ikke betalt";
+        }
+    }
 
 
     public String toString(){
-        return "\tKontingent årligt: " + amount + "\n\tGæld: " + debt;
+        return "\tKontingent årligt: " + amount + "\n\tbetalt:" + paidString();
     }
 
 
