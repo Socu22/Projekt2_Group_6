@@ -2,9 +2,8 @@ import java.time.LocalDate;
 import java.time.Duration;
 import java.time.Period;
 import java.time.Year;
-import java.util.ArrayList;
+import java.util.*;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 public class Member {
     private String name;
@@ -95,7 +94,7 @@ public class Member {
     public void payDebt(){
         double amountToPay;
         System.out.println("Debt for "+this.name+":"+contingent.getDebt());
-        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld"+"("+", indtast hvor meget: ");      //DUMMY NUMBER, USE INPUTHANDLER
+        amountToPay = InputHandler.inputDouble("Du vil gerne betale noget eller hele din gæld"+"("+", indtast hvor meget: ");
         this.contingent.payDebt(amountToPay);
     }
 
@@ -104,12 +103,39 @@ public class Member {
         contingent.addDebt();
     }
 
-    public void viewTimes(){
+    public void viewTimesLegacy(){
         System.out.println("\nHer er et overblik over dine tider: ");
         for (TrainTime t: trainTimeList){
             System.out.println(t);
         }
     }
+
+    public void viewTimes(){
+        HashMap<String, Integer> disciplineMap = new HashMap<>();
+        for (TrainTime t: trainTimeList){
+            String discipline = t.getDiscipline();
+            disciplineMap.put(discipline, disciplineMap.getOrDefault(discipline, 0) +1);
+        }
+        for(Map.Entry<String, Integer> entry: disciplineMap.entrySet()){
+            String discipline = entry.getKey();
+            int amountOfTimes = entry.getValue();
+            System.out.println(discipline + "- " + amountOfTimes + " tider registreret i systemet");
+        }
+        System.out.println(disciplineMap);
+        String chosendiscipline = InputHandler.inputString("Indtast den disciplin du vil have dine tider vist for:");
+        ArrayList<TrainTime> sortedTimeListOfChosenDiscipline = new ArrayList<>();
+        for (TrainTime t2: trainTimeList){
+            if(t2.getDiscipline().equalsIgnoreCase(chosendiscipline)){
+                sortedTimeListOfChosenDiscipline.add(t2);
+            }
+        }
+        sortedTimeListOfChosenDiscipline.sort(null);
+        for (TrainTime t3: sortedTimeListOfChosenDiscipline){
+            System.out.println(t3);
+        }
+    }
+
+
     public ArrayList<TrainTime> getTrainTimeList(){
         return trainTimeList;
     }
@@ -131,8 +157,7 @@ public class Member {
     }
 
     void addTime(){
-        //LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere: ");
-        LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den satte tid:"); //til test
+        LocalDate dateOfTime = InputHandler.inputDate("Indtast dato for den tid du vil registrere:");
         String chosenDiscipline=InputHandler.inputString("Input Disciplinen du har svømmet");
         int distanceSwam = InputHandler.inputInt("Indtast den distance du har svømmet: ");
         double durationInSec = InputHandler.inputDouble("Indtast tiden det tog dig i sekunder: ");
@@ -142,8 +167,6 @@ public class Member {
         List<Member> loaded = MemberHandler.loadFromDatabase();
         Member member = this;
         Member changedMemberToPassive= new PassiveMember().clone(member);
-
-
     }
 
     */

@@ -72,9 +72,9 @@ public class TrainTime implements Comparable<TrainTime>{
     @Override
     public int compareTo(TrainTime o){
         if(this.performance<o.performance)
-            return -1;
-        else if(o.performance<this.performance)
             return 1;
+        else if(o.performance<this.performance)
+            return -1;
         return 0;
     }
 }
