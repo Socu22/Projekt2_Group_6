@@ -103,14 +103,14 @@ public class Member {
         contingent.addDebt();
     }
 
-    public void viewTimes(){
+    public void viewTimesLegacy(){
         System.out.println("\nHer er et overblik over dine tider: ");
         for (TrainTime t: trainTimeList){
             System.out.println(t);
         }
     }
 
-    public void viewTimes2(){
+    public void viewTimes(){
         HashMap<String, Integer> disciplineMap = new HashMap<>();
         for (TrainTime t: trainTimeList){
             String discipline = t.getDiscipline();
@@ -177,7 +177,7 @@ public class Member {
         m1.addTime();
         m1.addTime();
         m1.addTime();
-        m1.viewTimes2();
+        m1.viewTimes();
     }
 }
 
