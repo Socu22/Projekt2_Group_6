@@ -73,8 +73,14 @@ public class DatabaseHandler {
 
     public static void save() {
         //ArrayList<Member> memberlist = MemberHandler.getMemberList();
-        ArrayList<Member> memberlist = MemberHandler.getMemberList();
-
+        ArrayList<Member> memberlist = new ArrayList<>();
+        Member m1 = new Member("Søren Brostrøm", LocalDate.of(2001, 03,01));
+        Member m2 = new PassiveMember("Camilla Fagerstrøm", LocalDate.of(1976,9,15));
+        m1.addTime();
+        m1.addTime();
+        m2.addTime();
+        memberlist.add(m1);
+        memberlist.add(m2);
         System.out.println("Liste oprettet, medlemmer tilføjet");
         try {
             FileWriter writer = new FileWriter("TestCSVforSave", false);
@@ -131,7 +137,7 @@ public class DatabaseHandler {
         }
 
          */
-        MemberHandler.loadFromDatabase();
+
         save();
     }
 }
