@@ -34,40 +34,26 @@ public class TimeSort {
     }
 //prints all options out
     public static void selectDicipline(){
-        ArrayList<String> hsukshit=new ArrayList<>();
 
         // Print Choices:
         System.out.println("Alle discipliner:  ");
-        grouped.forEach((key,list)->{
-            String[] discipline =(String[]) key.split(" ");
-            List<String> disciplineSplit = new ArrayList<>();
-            disciplineSplit
-                    .add(Arrays.asList(discipline[0]).toString());
-            int x;
-            boolean control=false;
+        List sortKeys =new ArrayList(grouped.keySet());
+        Collections.sort(sortKeys);
+        System.out.println(sortKeys);
 
-            hsukshit.add(discipline[0]);
-            for (int i = 0; i < hsukshit.size() ; i++) {
-                if(!hsukshit.get(i).equals(discipline[0])){
-                    control=true;
+        /*for (Object x : sortKeys)
+            System.out.println("Key = " + x
+                    + ", Value = " + grouped.get(x));
+                    
+         */
 
-                }
-                if (!control){
-                    hsukshit.add(discipline[0]);
+        /*grouped.forEach((key,list)->{
 
-
-                }
-
-            }
-
-
-
-
-
-            System.out.println(hsukshit);
-
+            System.out.println(key);
 
         });
+
+         */
 
         //your choice as a key
          inputDiscipline = InputHandler.inputString("Vælg Disciplin: ").toUpperCase();
@@ -94,4 +80,6 @@ public class TimeSort {
 
 
     }
+
+
 }
