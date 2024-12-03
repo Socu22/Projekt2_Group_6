@@ -41,12 +41,13 @@ public class DatabaseHandler {
                     int id = Integer.parseInt(fields[2]);
                     LocalDate birthdate = LocalDate.parse(fields[3]);
                     LocalDate signUpDate = LocalDate.parse(fields[4]);
+                    boolean isPaid = Boolean.parseBoolean(fields[5]);
 
                     //Den tjekker medlemstype og tilføjer derefter lokalevariabler til Medlemobjektets attributter
                     if (type.equalsIgnoreCase("aktivmedlem")) {
-                        currentMember = new Member(name, birthdate, signUpDate, id);
+                        currentMember = new Member(name, birthdate, signUpDate, id, isPaid);
                     } else if (type.equalsIgnoreCase("passivmedlem")) {
-                        currentMember = new PassiveMember(name, birthdate, signUpDate, id);
+                        currentMember = new PassiveMember(name, birthdate, signUpDate, id, isPaid);
                     }
 
                     if (currentMember != null) {

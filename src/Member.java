@@ -46,12 +46,14 @@ public class Member {
         idCounter = i;
     }
 
-    public Member (String name, LocalDate birthdate, LocalDate signUpDate, int id){
+    public Member (String name, LocalDate birthdate, LocalDate signUpDate, int id, boolean isPaid){
         this.name = name;
         this.birthdate = birthdate;
         this.age = Period.between(birthdate, LocalDate.now()).getYears();
         this.id = id;
         this.signUpDate = signUpDate;
+        this.contingent = new Contingent(this);
+        this.contingent.setContingentToCSV(isPaid);
 
         if (this.getAge()<18){
             memberType = "Junior Motionist";
@@ -179,8 +181,8 @@ class PassiveMember extends Member{
     public PassiveMember(String name, LocalDate birthdate) {
         super(name, birthdate);
     }
-    public PassiveMember(String name, LocalDate birthdate, LocalDate signUpDate, int id) { //Contstructer 2
-        super(name, birthdate, signUpDate, id);
+    public PassiveMember(String name, LocalDate birthdate, LocalDate signUpDate, int id, boolean isPaid) { //Contstructer 2
+        super(name, birthdate, signUpDate, id, isPaid);
     }
 
 }

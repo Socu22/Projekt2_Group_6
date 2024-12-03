@@ -37,6 +37,9 @@ public class Contingent {
     void payDebt(){
         isPaid = true;
     }
+    void setContingentToCSV(boolean isPaid){
+        this.isPaid = isPaid;
+    }
 
     String paidString(){
         if (isPaid == true){
@@ -46,6 +49,7 @@ public class Contingent {
             return "har ikke betalt";
         }
     }
+
 
 
     public String toString(){
