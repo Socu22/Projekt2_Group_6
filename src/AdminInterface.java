@@ -82,7 +82,7 @@ public class AdminInterface {
         try {
             MemberHandler.createMember();
             currentMember = MemberHandler.getNewestMember();
-            System.out.println("Genvej(tast): betal gæld(1), quit(2) ");
+            System.out.println("Betal gæld med det samme?: \n\t1: Ja \n\t2. Nej ");
             input = InputHandler.inputInt("Vælg et af følgende valg: ");
             DatabaseHandler.save();
         } catch (InvalidInputException e) {
