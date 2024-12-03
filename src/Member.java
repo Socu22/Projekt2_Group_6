@@ -54,6 +54,9 @@ public class Member {
         this.signUpDate = signUpDate;
         this.contingent = new Contingent(this);
         this.contingent.setContingentToCSV(isPaid);
+        if (this.id>idCounter){
+            idCounter = this.id+1;
+        }
 
         if (this.getAge()<18){
             memberType = "Junior Motionist";

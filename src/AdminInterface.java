@@ -84,6 +84,7 @@ public class AdminInterface {
             currentMember = MemberHandler.getNewestMember();
             System.out.println("Genvej(tast): betal gæld(1), quit(2) ");
             input = InputHandler.inputInt("Vælg et af følgende valg: ");
+            DatabaseHandler.save();
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
         }
@@ -141,11 +142,13 @@ public class AdminInterface {
             return;
         }
         getCurrentMember().addDebt();
-
+        DatabaseHandler.save();
     }
     public void payDebtForMember(){
         getCurrentMember().payDebt();
+        DatabaseHandler.save();
     }
+
     public void back(){
         running=false;
 

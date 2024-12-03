@@ -102,7 +102,7 @@ public class UserInterface {
 
     public void addTimeToMember(){
        currentMember.addTime();// logic skal ændres.
-
+        DatabaseHandler.save();
     }
     public void addCompetitionToMember(){
        // currentMember.addC

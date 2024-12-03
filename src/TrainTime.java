@@ -8,6 +8,7 @@ public class TrainTime implements Comparable<TrainTime>{
     private LocalDate date;         //Remember which day the time was set
     private double duration;        //How fast was the trainging
     private double durationinSec;
+    private String durationInTime;
     private String discipline;      //The swimming discipline
     private int distance;           //The Distance swam
     private double performance;     //The ratio of Time to distance to measure performance
@@ -23,10 +24,25 @@ public class TrainTime implements Comparable<TrainTime>{
         this.distance = distance;
         this.modtagetMemberName= member.getName();
         this.modtagetMemberID= member.getID();
+        this.durationInTime = calTimeFromSec(timeSec);
     }
 
     double getDurationinSec(){
         return durationinSec;
+    }
+
+    String calTimeFromSec(double sec){
+        int minutes = 0;
+        int seconds = 0;
+
+        for (int i = 0; i<sec; i++){
+            seconds++;
+            if (seconds == 60){
+                minutes++;
+                seconds=0;
+            }
+        }
+        return minutes + ":" + seconds;
     }
 
     double setDuration(double durationInSec){
@@ -60,13 +76,13 @@ public class TrainTime implements Comparable<TrainTime>{
     }
 
     public String toString(){
-        return "\t"+modtagetMemberName+"[id("+modtagetMemberID+")]"+date + " - " + discipline + " " + distance + "m - " + df.format(duration) + secOrMin;
+        return "\t"+modtagetMemberName+"[id("+modtagetMemberID+")]"+date + " - " + discipline + " " + distance + "m - " + durationInTime;
     }
 
     public static void main(String[] args) {
-        Member m1 = new Member("Rasmus", LocalDate.of(1997, 03, 14));
-        TrainTime t1 = new TrainTime(m1, LocalDate.now(), 60, "Crawl", 1000);
-        System.out.println(t1.performance);
+        Member m1 = new Member("Rasmus", LocalDate.of(2001,01,01));
+        TrainTime t1 = new TrainTime(m1, LocalDate.now(), 200, "Crawl",100);
+        System.out.println(t1);
     }
 
     @Override

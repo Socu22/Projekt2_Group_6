@@ -75,11 +75,9 @@ public class DatabaseHandler {
     public static void save() {
         ArrayList<Member> memberlist = MemberHandler.getMemberList();
         try {
-            FileWriter writer = new FileWriter("TestCSVforSave", false);
+            FileWriter writer = new FileWriter(path, false);
             //Loop igennem listen af medlemmer
-            System.out.println("Writer oprettet");
             for (Member m: memberlist) {
-                System.out.println(m);
                 //Programmet checker hvilken type medlem det pågældende medlem er
                 if (m instanceof PassiveMember) {
                     writer.write("Passivmedlem," + memberInfoToCSV(m));
@@ -100,7 +98,7 @@ public class DatabaseHandler {
     }
 
     public static String memberInfoToCSV(Member m){
-        return m.getName() + "," + m.getID() + "," + m.getBirthdate() + "," +  m.getSignUpDate() + "," +  m.getContingent().getAmount();
+        return m.getName() + "," + m.getID() + "," + m.getBirthdate() + "," +  m.getSignUpDate() + "," +  m.getContingent().getDebt();
     }
 
     public static String timeInfoToCSV(TrainTime t){
@@ -129,7 +127,7 @@ public class DatabaseHandler {
         }
 
          */
-
+        MemberHandler.loadFromDatabase();
         save();
     }
 }
