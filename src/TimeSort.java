@@ -26,6 +26,7 @@ public class TimeSort {
         grouped.forEach((key, list) -> {
             list.sort(Comparator.comparingDouble(TrainTime::getDuration)
                     .thenComparing(TrainTime::getDate));
+
         });
 
 
@@ -41,19 +42,7 @@ public class TimeSort {
         Collections.sort(sortKeys);
         System.out.println(sortKeys);
 
-        /*for (Object x : sortKeys)
-            System.out.println("Key = " + x
-                    + ", Value = " + grouped.get(x));
-                    
-         */
 
-        /*grouped.forEach((key,list)->{
-
-            System.out.println(key);
-
-        });
-
-         */
 
         //your choice as a key
          inputDiscipline = InputHandler.inputString("Vælg Disciplin: ").toUpperCase();
