@@ -2,7 +2,6 @@ import java.time.LocalDate;
 
 public class Contingent {
     private double amount;
-    //private double debt;
     private boolean isPaid;
     private Member member;
 
@@ -50,11 +49,7 @@ public class Contingent {
         }
     }
 
-
-
     public String toString(){
         return "\tKontingent årligt: " + amount + "\n\tbetalt:" + paidString();
     }
-
-
 }

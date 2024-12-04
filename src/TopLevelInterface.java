@@ -66,9 +66,7 @@ public class TopLevelInterface {
         } else {
             System.out.println("Forkert password. Adgang nægtet.");
         }
-
     }
-
 
     // Method for User-login
     private static void userLogin() {

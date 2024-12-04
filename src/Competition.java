@@ -4,7 +4,7 @@ public class Competition {
     String name;
     double timeResult;
     String disciplin;
-    int placement; // i forhold til andre
+    int placement;
     LocalDate date;
 
     public Competition(String name, String disciplin, int placement, LocalDate date) {
