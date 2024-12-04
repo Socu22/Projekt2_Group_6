@@ -11,6 +11,5 @@ public class Inputhandlertest {
         double pengePåKonto = InputHandler.inputDouble("Indtast hvor mange penge du har");
         System.out.println("Du har så mange penge: " + pengePåKonto);
         LocalDate birthdate = InputHandler.inputDate("Indtast din fødselsdato");
-
-    }
+        }
     }

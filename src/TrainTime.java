@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class TrainTime implements Comparable<TrainTime>{
     private String modtagetMemberName;
     private int modtagetMemberID;
-    private LocalDate date;         //Remember which day the time was set
-    private double duration;        //How fast was the trainging
+    private LocalDate date;         //Remembers which day the time was set
+    private double duration;        //How fast was the training
     private double durationinSec;
     private String durationInTime;
     private String discipline;      //The swimming discipline

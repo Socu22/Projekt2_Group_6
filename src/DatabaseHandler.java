@@ -8,7 +8,7 @@ public class DatabaseHandler {
     private static String path = "src//Database.csv";
     private static String line = "";
 
-    public static void readFile() { //Metode til at læse hele Databse.csv filen
+    public static void readFile() { //Method for reading .csv file
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
 
@@ -24,7 +24,7 @@ public class DatabaseHandler {
         }
     }
 
-    public static ArrayList<Member> load() { //Metode til at loade hele Databse.csv filen og gør det til en Arraylist
+    public static ArrayList<Member> load() { //Method for converting .csv file to arraylist
         ArrayList<Member> Memberlist = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
@@ -34,16 +34,16 @@ public class DatabaseHandler {
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",");
 
-                // Den tjekker hvor mange felter der er i csv filen for at se om det er et medlem eller en tid
+                // Checks whether element in .csv file is member or time
                 if (fields.length == 6) {
                     String type = fields[0];
-                    String name = fields[1]; //Den tilføjer alle værdierne fra csv filen ind i lokale variabler
+                    String name = fields[1]; //Adds values from .csv file to local values
                     int id = Integer.parseInt(fields[2]);
                     LocalDate birthdate = LocalDate.parse(fields[3]);
                     LocalDate signUpDate = LocalDate.parse(fields[4]);
                     boolean isPaid = Boolean.parseBoolean(fields[5]);
 
-                    //Den tjekker medlemstype og tilføjer derefter lokalevariabler til Medlemobjektets attributter
+                    //Checks membertype and adds values to member
                     if (type.equalsIgnoreCase("aktivmedlem")) {
                         currentMember = new Member(name, birthdate, signUpDate, id, isPaid);
                     } else if (type.equalsIgnoreCase("passivmedlem")) {
@@ -53,15 +53,15 @@ public class DatabaseHandler {
                     if (currentMember != null) {
                         Memberlist.add(currentMember);
                     }
-                }// Den tjekker om det er en tid den læser
+                }// Checks if is reading a time value
                 else if (fields.length == 4 && currentMember != null) {
-                    LocalDate date = LocalDate.parse(fields[0]); //Lokale variabler bliver tilføjet en værdi ud fra felterne i CSV
+                    LocalDate date = LocalDate.parse(fields[0]); //Local variables are added from .csv
                     double duration = Double.parseDouble(fields[1]);
                     String discipline = fields[2];
                     int distance = Integer.parseInt(fields[3]);
-                        // Lokale variabler bliver tilføjet til traintime objektet
+                        // Local values are added to traintime object
                     TrainTime trainTime = new TrainTime(currentMember,date, duration, discipline, distance);
-                    currentMember.getTrainTimeList().add(trainTime); //Traintime objektet bliver tilføjer til current Member objektet
+                    currentMember.getTrainTimeList().add(trainTime); //Traintime object is added to currentMember object
                 }
             }
             Member.setIdCounter(currentMember.getID()+1);
@@ -76,9 +76,9 @@ public class DatabaseHandler {
         ArrayList<Member> memberlist = MemberHandler.getMemberList();
         try {
             FileWriter writer = new FileWriter(path, false);
-            //Loop igennem listen af medlemmer
+            //Loops through list of members
             for (Member m: memberlist) {
-                //Programmet checker hvilken type medlem det pågældende medlem er
+                //Program checks type of member
                 if (m instanceof PassiveMember) {
                     writer.write("Passivmedlem," + memberInfoToCSV(m));
                 }
@@ -105,7 +105,7 @@ public class DatabaseHandler {
         return t.getDate() + "," + t.getDuration() + "," + t.getDiscipline() + "," + t.getDistance();
     }
 
-    public static void writeToFile(Member member) { // Metode til at tilføje et Member til Database.csv filen
+    public static void writeToFile(Member member) { // Method for adding Member to Database.csv file
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(path, false));
             bw.write(member.toCSV());
@@ -117,16 +117,6 @@ public class DatabaseHandler {
     }
 
     public static void main(String[] args) {
-        /*
-        ArrayList<Member> members = load();
-        for (Member member : members) {
-            System.out.println(member.getName() + " - " + member.getTrainTimeList().size() + " training times");
-            for (TrainTime time : member.getTrainTimeList()) {
-                System.out.println("  " + time);
-            }
-        }
-
-         */
         MemberHandler.loadFromDatabase();
         save();
     }

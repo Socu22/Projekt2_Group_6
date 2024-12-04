@@ -75,10 +75,10 @@ public class Member {
         }
     }
 
+
     public Contingent getContingent() {
         return contingent;
     }
-
 
     public String getName(){
         return name;
@@ -108,6 +108,7 @@ public class Member {
             System.out.println(t);
         }
     }
+
 
     public void viewTimes(){
         HashMap<String, Integer> disciplineMap = new HashMap<>();
@@ -162,13 +163,6 @@ public class Member {
         double durationInSec = InputHandler.inputDouble("Indtast tiden det tog dig i sekunder: ");
         this.trainTimeList.add(new TrainTime(this,dateOfTime, durationInSec, chosenDiscipline, distanceSwam));
     }
-   /* public void setMemberStatus() {
-        List<Member> loaded = MemberHandler.loadFromDatabase();
-        Member member = this;
-        Member changedMemberToPassive= new PassiveMember().clone(member);
-    }
-
-    */
 
     public static void main(String[] args) {
         Member m1 = new PassiveMember("Frederik", LocalDate.of(1922, 02, 12));

@@ -6,11 +6,6 @@ public class UserInterface {
     public  Member currentMember;
     public static boolean running= true;
 
-
-
-
-
-
     public void start_interface_User(){
         while (running) {
             loginUser();
@@ -34,7 +29,6 @@ public class UserInterface {
             if (currentMember instanceof CompetitionMember){
                 compMenu();
             }
-
         }
     }
 
@@ -104,19 +98,20 @@ public class UserInterface {
        currentMember.addTime();// logic skal ændres.
         DatabaseHandler.save();
     }
+
     public void addCompetitionToMember(){
        // currentMember.addC
-
     }
+
     public void viewTimesForMember(){
         currentMember.viewTimes();
     }
+
     public void viewCompetitionForMember(){
         //MemberHandler.searchByName();
     }
 
     public void back(){
         running=false;
-
     }
 }

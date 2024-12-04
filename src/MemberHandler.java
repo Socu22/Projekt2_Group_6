@@ -94,7 +94,7 @@ public class MemberHandler {
                 break;
 
             case 3:
-                System.out.println("Denne feature er endnu ikke understøttet");
+                m = new CompetitionMember(chosenName, chosenDate);
                 break;
 
             default:
