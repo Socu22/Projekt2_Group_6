@@ -9,73 +9,51 @@ public class UserInterface {
     public void start_interface_User(){
         while (running) {
             loginUser();
-            System.out.println("Velkommen " + currentMember.getName());
-            System.out.println("Tast 1 for at registrer tid for medlem: ");
-            System.out.println("Tast 2 for at tilføj reslutater: ");
-            System.out.println("Tast 3 for at se alle reslutater: ");
-            if (currentMember instanceof Member &&! (currentMember instanceof CompetitionMember)){
-                System.out.println("Tast 4 for at gå tilbage");
-            }
-            if (currentMember instanceof CompetitionMember){
-                System.out.println("Tast 4 for at tilføje et stævne.");
-                System.out.println("Tast 5 for at se dine stævner.");
-                System.out.println("Tast 6 for at gå tilbage.");
-            }
-            inputInt = InputHandler.inputInt("Vælg et af følgende valg: ");
-
-            if (currentMember instanceof Member &&! (currentMember instanceof CompetitionMember)){
-                regularMenu();
-            }
-            if (currentMember instanceof CompetitionMember){
-                compMenu();
-            }
+            differentUserLogic();
         }
     }
 
     public void regularMenu(){
         switch (inputInt) {
             case 1:
-                //create Member
+                //add time to member
                 addTimeToMember();
                 break;
             case 2:
-                //Add Competition to Member  object-
-                addTimeToMember();
-            case 3:
                 //View swimming results
                 viewTimesForMember();
-            case 4:
-                //show competitions for member
+                break;
+            case 3:
                 back();
                 break;
+
         }
     }
 
     public void compMenu(){
         switch (inputInt) {
             case 1:
-                //create Member
+                //add time to member
                 addTimeToMember();
                 break;
             case 2:
-                //Add Competition to Member  object-
-                addTimeToMember();
-            case 3:
                 //View swimming results
                 viewTimesForMember();
+                break;
+            case 3:
+                //add competitionToMember
+                addCompetitionToMember();
+                break;
+
             case 4:
                 //show competitions for member
                 viewCompetitionForMember();
+                break;
 
             case 5:
-                //addCompetition()
-                break;
-            case 6:
-                //viewCompetitions()
-                break;
-            case 7:
                 back();
                 break;
+
         }
     }
 
@@ -92,10 +70,32 @@ public class UserInterface {
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
         }
+
+    }
+    public void differentUserLogic(){
+        System.out.println("Velkommen " + currentMember.getName());
+        System.out.println("Tast 1 for at registrer tid for medlem: ");
+        System.out.println("Tast 2 for at se alle reslutater: ");
+        if (currentMember instanceof Member &&! (currentMember instanceof CompetitionMember)){
+            System.out.println("Tast 3 for at gå tilbage");
+        }
+        if (currentMember instanceof CompetitionMember){
+            System.out.println("Tast 3 for at tilføje et stævne.");
+            System.out.println("Tast 4 for at se dine stævner.");
+            System.out.println("Tast 5 for at gå tilbage.");
+        }
+        inputInt = InputHandler.inputInt("Vælg et af følgende valg: ");
+
+        if (currentMember instanceof Member &&! (currentMember instanceof CompetitionMember)){
+            regularMenu();
+        }
+        if (currentMember instanceof CompetitionMember){
+            compMenu();
+        }
     }
 
     public void addTimeToMember(){
-       currentMember.addTime();// logic skal ændres.
+       currentMember.addTime();//
         DatabaseHandler.save();
     }
 
