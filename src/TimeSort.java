@@ -2,73 +2,69 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TimeSort {
-    static List<TrainTime> trainTimes = new ArrayList<>();
-    static Map<String, List<TrainTime>> grouped;
-    static String inputDiscipline;
-    static String inputDistance;
-    static String keyInputSearch;
 
-//Sorts everything about the Member and TrainTimes
-    public static void sorter(){
-            //adds all traintimes to traintimes Arraylist
-        for (Member m : MemberHandler.loadFromDatabase()){
+    private static List<TrainTime> trainTimes = new ArrayList<>();
+    private static Map<String, List<TrainTime>> grouped;
+    private static String inputDiscipline;
+    private static String inputDistance;
+
+    public static void groupByDisciplines() {
+        trainTimes.clear();
+        for (Member m : MemberHandler.loadFromDatabase()) {
             trainTimes.addAll(m.getTrainTimeList());
-
         }
 
-        // Group by discipline and distance
         grouped = trainTimes.stream()
+                .collect(Collectors.groupingBy(TrainTime::getDiscipline));
+
+        grouped.forEach((key, list) -> list.sort(
+                Comparator.comparingDouble(TrainTime::getDuration)
+                        .thenComparing(TrainTime::getDate)
+        ));
+    }
+
+    public static void selectDiscipline() {
+        System.out.println("Available Disciplines: ");
+        List<String> sortedKeys = new ArrayList<>(grouped.keySet());
+        Collections.sort(sortedKeys);
+        System.out.println(sortedKeys);
+
+        inputDiscipline = "crawl".toUpperCase(); // Placeholder for input
+        System.out.println("Selected Discipline: " + inputDiscipline);
+
+        Map<String, List<TrainTime>> groupedByDistance = trainTimes.stream()
                 .collect(Collectors.groupingBy(
-                        tt -> tt.getDiscipline() + " " + tt.getDistance() + "m" //this is the name of the group and one of the keys value
+                        tt -> tt.getDiscipline() + " " + tt.getDistance() + "m"
                 ));
 
-        // Sort each group based on duration comparred to all dates
-        grouped.forEach((key, list) -> {
-            list.sort(Comparator.comparingDouble(TrainTime::getDuration)
-                    .thenComparing(TrainTime::getDate));
+        System.out.println("Available Distances: ");
+        List<String> distanceKeys = new ArrayList<>(groupedByDistance.keySet());
+        distanceKeys.stream()
+                .filter(key -> key.startsWith(inputDiscipline))
+                .forEach(System.out::println);
 
-        });
-
-
-
-
+        inputDistance = "100"; // Placeholder for input
+        System.out.println("Selected Distance: " + inputDistance);
     }
-//prints all options out
-    public static void selectDicipline(){
 
-        // Print Choices:
-        System.out.println("Alle discipliner:  ");
-        List sortKeys =new ArrayList(grouped.keySet());
-        Collections.sort(sortKeys);
-        System.out.println(sortKeys);
+    public static void topFiveForEachDiscipline() {
+        groupByDisciplines();
+        selectDiscipline();
 
+        String keyInputSearch = inputDiscipline + " " + inputDistance + "m";
 
-
-        //your choice as a key
-         inputDiscipline = InputHandler.inputString("Vælg Disciplin: ").toUpperCase();
-         inputDistance = InputHandler.inputString("Skriv Distance: ");
-         keyInputSearch=inputDiscipline + " " + inputDistance + "m";
-
-
-    }
-    public static void topFiveForEachDiscipline(){
-       sorter();
-       selectDicipline();
-
-        //Sort Based on discipline and only top5
-
-        grouped.forEach((key, list) -> {
-            if(key.equals(keyInputSearch)){
-                System.out.println("\nGroup: " + key);
-                for (int i = 0; i < 5; i++) {
-                    System.out.println(list.get(i));
-                }
-
+        if (grouped.containsKey(keyInputSearch)) {
+            List<TrainTime> list = grouped.get(keyInputSearch);
+            System.out.println("\nTop 5 for Group: " + keyInputSearch);
+            for (int i = 0; i < Math.min(5, list.size()); i++) {
+                System.out.println(list.get(i));
             }
-        });
-
-
+        } else {
+            System.out.println("No results found for group: " + keyInputSearch);
+        }
     }
 
+    public static void main(String[] args) {
 
+    }
 }
