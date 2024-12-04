@@ -29,7 +29,7 @@ public class TimeSort {
         Collections.sort(sortedKeys);
         System.out.println(sortedKeys);
 
-        inputDiscipline = "crawl".toUpperCase(); // Placeholder for input
+        inputDiscipline = InputHandler.inputString("Skriv din discipline").toUpperCase();
         System.out.println("Selected Discipline: " + inputDiscipline);
 
         Map<String, List<TrainTime>> groupedByDistance = trainTimes.stream()
@@ -43,7 +43,7 @@ public class TimeSort {
                 .filter(key -> key.startsWith(inputDiscipline))
                 .forEach(System.out::println);
 
-        inputDistance = "100"; // Placeholder for input
+        inputDistance = InputHandler.inputString("Skriv distancen der skal sorters efter:");
         System.out.println("Selected Distance: " + inputDistance);
     }
 
@@ -52,7 +52,6 @@ public class TimeSort {
         selectDiscipline();
 
         String keyInputSearch = inputDiscipline + " " + inputDistance + "m";
-
         if (grouped.containsKey(keyInputSearch)) {
             List<TrainTime> list = grouped.get(keyInputSearch);
             System.out.println("\nTop 5 for Group: " + keyInputSearch);
@@ -63,7 +62,7 @@ public class TimeSort {
             System.out.println("No results found for group: " + keyInputSearch);
         }
     }
-    /
+
 
     public static void main(String[] args) {
 
