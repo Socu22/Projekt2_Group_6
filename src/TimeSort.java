@@ -3,47 +3,53 @@ import java.util.stream.Collectors;
 
 public class TimeSort {
 
-    private static List<TrainTime> trainTimes = new ArrayList<>();
-    private static Map<String, List<TrainTime>> grouped;
-    private static String inputDiscipline;
-    private static String inputDistance;
+    private static List<TrainTime> trainTimes = new ArrayList<>(); //List with all traintimes
+    private static List<String> distanceKeys;
+    private static Map<String, List<TrainTime>> grouped; // so the grouped keyes can printed out easier
+    private static Map<String, List<TrainTime>> groupedByDistance; //this one is here so it can search with distance and not just group like grouped map
+    private static String inputDiscipline; //straight forward
+    private static String inputDistance; // straight forward
 
-    public static void groupByDisciplines() {
-        trainTimes.clear();
+    private static void groupByDisciplines() {
+
+        trainTimes.clear(); // clears if somehow there is something in it before anything else
         for (Member m : MemberHandler.loadFromDatabase()) {
-            trainTimes.addAll(m.getTrainTimeList());
+            trainTimes.addAll(m.getTrainTimeList()); // adds all traintimes
         }
 
         grouped = trainTimes.stream()
-                .collect(Collectors.groupingBy(TrainTime::getDiscipline));
+                .collect(Collectors.groupingBy(TrainTime::getDiscipline)); //Collect every discipline name/ is the key
 
-        grouped.forEach((key, list) -> list.sort(
-                Comparator.comparingDouble(TrainTime::getDuration)
-                        .thenComparing(TrainTime::getDate)
-        ));
-    }
-
-    public static void selectDiscipline() {
-        System.out.println("Available Disciplines: ");
-        List<String> sortedKeys = new ArrayList<>(grouped.keySet());
-        Collections.sort(sortedKeys);
-        System.out.println(sortedKeys);
-
-        inputDiscipline = InputHandler.inputString("Skriv din discipline").toUpperCase();
-        System.out.println("Selected Discipline: " + inputDiscipline);
-
-        Map<String, List<TrainTime>> groupedByDistance = trainTimes.stream()
+        groupedByDistance = trainTimes.stream()//Makes GroupedByDistance Keys
                 .collect(Collectors.groupingBy(
                         tt -> tt.getDiscipline() + " " + tt.getDistance() + "m"
                 ));
 
-        System.out.println("Available Distances: ");
-        List<String> distanceKeys = new ArrayList<>(groupedByDistance.keySet());
-        distanceKeys.stream()
-                .filter(key -> key.startsWith(inputDiscipline))
-                .forEach(System.out::println);
+        groupedByDistance.forEach((key, trainTimes) -> trainTimes.sort(// sorts based on Duration, & date
+                Comparator.comparingDouble(TrainTime::getDuration)
+                        .thenComparing(TrainTime::getDate)
+        ));
 
-        inputDistance = InputHandler.inputString("Skriv distancen der skal sorters efter:");
+
+    }
+
+    private static void selectDiscipline() { //select discipline, and then distance
+        System.out.println("Available Disciplines: ");
+        List<String> sortedKeys = new ArrayList<>(grouped.keySet());
+        Collections.sort(sortedKeys);
+        System.out.println(sortedKeys);//prints the grouped keys
+
+        inputDiscipline = InputHandler.inputString("Skriv din discipline").toUpperCase(); // makes sure than distance is in upper case so it follows syntax
+        System.out.println("Selected Discipline: " + inputDiscipline);
+
+
+        System.out.println("Available Distances: ");
+        distanceKeys = new ArrayList<>(groupedByDistance.keySet());// it sends all the keys with distance
+        distanceKeys.stream()
+                .filter(key -> key.startsWith(inputDiscipline))// custom key with input
+                .forEach(System.out::println); //and then fancy System.out.Println()
+
+        inputDistance = InputHandler.inputString("Skriv distancen der skal sorters efter:"); //
         System.out.println("Selected Distance: " + inputDistance);
     }
 
@@ -51,15 +57,16 @@ public class TimeSort {
         groupByDisciplines();
         selectDiscipline();
 
-        String keyInputSearch = inputDiscipline + " " + inputDistance + "m";
-        if (grouped.containsKey(keyInputSearch)) {
-            List<TrainTime> list = grouped.get(keyInputSearch);
+        String keyInputSearch = inputDiscipline.toUpperCase() + " " + inputDistance + "m";// custom key from input will match with custom key from ealier
+        System.out.println(grouped.get(keyInputSearch));
+        if (groupedByDistance.containsKey(keyInputSearch)) {
+            trainTimes = groupedByDistance.get(keyInputSearch);
             System.out.println("\nTop 5 for Group: " + keyInputSearch);
-            for (int i = 0; i < Math.min(5, list.size()); i++) {
-                System.out.println(list.get(i));
+            for (int i = 0; i < Math.min(5, trainTimes.size()); i++) {
+                System.out.println(trainTimes.get(i)); //then print
             }
         } else {
-            System.out.println("No results found for group: " + keyInputSearch);
+            System.out.println("No results found for group: " + keyInputSearch);//if not this happens
         }
     }
 
