@@ -95,13 +95,24 @@ public class DatabaseHandler {
                 if (m instanceof PassiveMember) {
                     writer.write("Passivmedlem," + memberInfoToCSV(m));
                 }
-                if (m instanceof Member && !(m instanceof PassiveMember)) {
+                if (m instanceof CompetitionMember){
+                    writer.write("Konkurrencemedlem," + memberInfoToCSV(m));
+                }
+                if (m instanceof Member && !(m instanceof PassiveMember) && !(m instanceof CompetitionMember)) {
                     writer.write("Aktivmedlem," + memberInfoToCSV(m));
                 }
+
                 writer.write("\n");
                 for (TrainTime t: m.getTrainTimeList()){
                     writer.write(timeInfoToCSV(t));
                     writer.write("\n");
+                }
+                writer.write("\n");
+                if (m instanceof CompetitionMember){
+                    for (Competition c : ((CompetitionMember) m).getComepetitionList()) {
+                        writer.write(c.compToCSV(c));
+                        writer.write("\n");
+                    }
                 }
             }
             writer.close();

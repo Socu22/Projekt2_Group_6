@@ -23,8 +23,9 @@ public class CompetitionMember extends Member {
         String discipline = InputHandler.inputString("Indtast disciplin:");
         double time = InputHandler.inputDouble("Indtast tid (sekunder):");
         int placement = InputHandler.inputInt("Indtast placering:");
+        int distance = InputHandler.inputInt("Indtast distance");
 
-        Competition competition = new Competition(competitionName, discipline, placement, competitionDate, time);
+        Competition competition = new Competition(this, competitionName, discipline, placement, competitionDate, time, distance);
         competition.addCompetitionTime(time);
         competitionList.add(competition);
 
@@ -43,21 +44,25 @@ public class CompetitionMember extends Member {
     }
 
     public void assignHold() {
-        int age = getAge();
-        if (age < 18) {
+        if (super.getAge() < 18) {
             this.hold = "Juniorhold";
-        } else if (age <= 60) {
+        } else if (super.getAge() <= 60) {
             this.hold = "Seniorhold";
         } else {
             this.hold = "Ældrehold";
         }
-        System.out.println(getName() + " er blevet tildelt til hold: " + hold);
     }
+
     public ArrayList<Competition> getComepetitionList() {
         return competitionList;
     }
 
     public String getHold() {
         return hold;
+    }
+
+    @Override
+    public String toString(){
+        return "Velkommen \uD83D\uDC4B\uD83D\uDC4B\uD83D\uDC4B " + super.getName() + " ID: " + super.getID() + "\n\tAlder: " + super.getAge() + "\n\tHold: " + hold + "\n\tMedlemstype: " + super.getMemberType() + "\n" + super.getContingent() + "\n\tMeldt ind den: " + super.getSignUpDate();
     }
 }

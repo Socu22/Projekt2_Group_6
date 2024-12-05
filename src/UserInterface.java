@@ -105,6 +105,7 @@ public class UserInterface {
 
     public void addCompetitionToMember(){
        typeCastMember.addCompetitionPerformance();
+       DatabaseHandler.save();
     }
 
     public void viewTimesForMember(){

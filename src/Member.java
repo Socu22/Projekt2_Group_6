@@ -152,8 +152,12 @@ public class Member {
         return memberType + "," + name + "," + id + "," + birthdate + "," + signUpDate + "," + age;
     }
 
+    public String getMemberType(){
+        return memberType;
+    }
+
     public String toString(){
-        return "Velkommen " + name + " ID: " + id + "\n\tAlder: " + age + "\n\tMedlemstype: " + memberType + "\n" + contingent + "\n\tMeldt ind den: " + signUpDate;
+        return "Velkommen \uD83D\uDC4B\uD83D\uDC4B\uD83D\uDC4B " + name + " ID: " + id + "\n\tAlder: " + age + "\n\tMedlemstype: " + memberType + "\n" + contingent + "\n\tMeldt ind den: " + signUpDate;
     }
 
     void addTime(){

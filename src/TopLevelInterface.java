@@ -13,10 +13,10 @@ public class TopLevelInterface {
         boolean running = true;
 
         while (running) {
-            System.out.println("Velkommen til systemet!");
-            System.out.println("1. Login som Admin");
-            System.out.println("2. Login som Bruger");
-            System.out.println("3. Afslut program");
+            System.out.println("\uD83D\uDC2CVelkommen til systemet!\uD83D\uDC2C");
+            System.out.println("1. Login som Admin \uD83D\uDC68\u200D\uD83D\uDCBB");
+            System.out.println("2. Login som Bruger \uD83D\uDC64");
+            System.out.println("3. Afslut program \uD83D\uDED1");
             System.out.print("Vælg en mulighed: ");
 
 
