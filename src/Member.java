@@ -121,7 +121,6 @@ public class Member {
             int amountOfTimes = entry.getValue();
             System.out.println(discipline + "- " + amountOfTimes + " tider registreret i systemet");
         }
-        System.out.println(disciplineMap);
         String chosendiscipline = InputHandler.inputString("Indtast den disciplin du vil have dine tider vist for:");
         ArrayList<TrainTime> sortedTimeListOfChosenDiscipline = new ArrayList<>();
         for (TrainTime t2: trainTimeList){

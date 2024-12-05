@@ -141,7 +141,7 @@ public class AdminInterface {
 
 
     public void addDebtToMember(){
-
+        setCurrentMember();
         if (currentMember==null){
             System.out.println("Du bedes vælge specifikt medlem først");
             return;
@@ -150,6 +150,7 @@ public class AdminInterface {
         DatabaseHandler.save();
     }
     public void payDebtForMember(){
+        setCurrentMember();
         getCurrentMember().payDebt();
         DatabaseHandler.save();
     }
@@ -163,7 +164,6 @@ public class AdminInterface {
     }
 
     public void outputMembersInDebt(){
-        System.out.println("virker");
         for (Member m: MemberHandler.getMemberList()){
             if (m.getContingent().getDebt() == false){
                 System.out.println(m.getName() + ": Har ikke betalt");
