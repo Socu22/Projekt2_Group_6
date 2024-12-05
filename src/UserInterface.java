@@ -4,6 +4,7 @@ public class UserInterface {
     public static int inputInt = -1;
     public static String inputString ="";
     public  Member currentMember;
+    public CompetitionMember typeCastMember;
     public static boolean running= true;
 
     public void start_interface_User(){
@@ -65,6 +66,9 @@ public class UserInterface {
         try {
             currentMember= MemberHandler.smartSearch();
             System.out.println(currentMember);
+            if (currentMember instanceof CompetitionMember){
+                typeCastMember = (CompetitionMember) currentMember;
+            }
         } catch (MemberNotFoundException e) {
             System.out.println(e.toString());
         } catch (InvalidInputException e) {
@@ -100,7 +104,7 @@ public class UserInterface {
     }
 
     public void addCompetitionToMember(){
-       // currentMember.addC
+       typeCastMember.addCompetitionPerformance();
     }
 
     public void viewTimesForMember(){
@@ -108,7 +112,7 @@ public class UserInterface {
     }
 
     public void viewCompetitionForMember(){
-        //MemberHandler.searchByName();
+        typeCastMember.viewCompetitions();
     }
 
     public void back(){
