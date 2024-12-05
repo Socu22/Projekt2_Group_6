@@ -5,15 +5,20 @@ public class TimeSort {
 
     private static List<TrainTime> trainTimes = new ArrayList<>(); //List with all traintimes
     private static List<String> distanceKeys;
+    private static TimeSort instance= new TimeSort();
     private static Map<String, List<TrainTime>> grouped; // so the grouped keyes can printed out easier
     private static Map<String, List<TrainTime>> groupedByDistance; //this one is here so it can search with distance and not just group like grouped map
     private static String inputDiscipline; //straight forward
     private static String inputDistance; // straight forward
 
+    public static TimeSort getInstance() {
+        return instance;
+    }
+
     private static void groupByDisciplines() {
 
         trainTimes.clear(); // clears if somehow there is something in it before anything else
-        for (Member m : MemberHandler.loadFromDatabase()) {
+        for (Member m : MemberHandler.getMemberList()) {
             trainTimes.addAll(m.getTrainTimeList()); // adds all traintimes
         }
 
@@ -68,6 +73,14 @@ public class TimeSort {
         } else {
             System.out.println("No results found for group: " + keyInputSearch);//if not this happens
         }
+    }
+    public static List<String> printKnown_DisciplineOrDistance (){
+        groupByDisciplines();
+        selectDiscipline();
+        List<String> strings = Arrays.asList(inputDiscipline,inputDistance);
+
+
+        return strings;
     }
 
 
