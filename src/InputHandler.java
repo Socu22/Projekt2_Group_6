@@ -90,4 +90,19 @@ public class InputHandler {
             }
         }
     }
+
+    public static LocalDate inputDateSpecific (String prompt) {
+        LocalDate result;
+
+        while (true) {
+            System.out.println(prompt + " (YYYY-MM-DD):");
+            try {
+                String input = scanner.nextLine();
+                result = LocalDate.parse(input);
+                return result;
+            } catch (DateTimeParseException e) {
+                System.out.println("Ugyldigt datoformat. Forventet format er YYYY-MM-DD.");
+            }
+        }
+    }
 }

@@ -56,6 +56,9 @@ public class DatabaseHandler {
 
                     if (currentMember != null) {
                         Memberlist.add(currentMember);
+                    } else if (currentCompetitionMember != null) {
+                        Memberlist.add(currentCompetitionMember);
+
                     }
                 }// Checks if is reading a time value
                 else if (fields.length == 4 && currentMember != null) {
@@ -67,14 +70,13 @@ public class DatabaseHandler {
                     TrainTime trainTime = new TrainTime(currentMember,date, duration, discipline, distance);
                     currentMember.getTrainTimeList().add(trainTime); //Traintime object is added to currentMember object
                 } // Checks if it is a Comepetion
-                else if (fields.length == 5 && currentMember != null) {
+                else if (fields.length == 5 && currentCompetitionMember != null) {
                     LocalDate date = LocalDate.parse(fields[0]);
                     String competitionName = fields[1];
                     int placement = Integer.parseInt(fields[2]);
-                    double timeResult = Double.parseDouble(fields[3]);
-                    String disciplin = fields[4];
+                    double timeResult = Double.parseDouble(fields[4]);
+                    String disciplin = fields[3];
                     Competition competition = new Competition(currentMember, competitionName, disciplin, placement, date, timeResult);
-                    assert currentCompetitionMember != null;
                     currentCompetitionMember.getComepetitionList().add(competition);
                 }
             }
@@ -133,5 +135,6 @@ public class DatabaseHandler {
     public static void main(String[] args) {
         MemberHandler.loadFromDatabase();
         save();
+        readFile();
     }
 }

@@ -9,6 +9,10 @@ public class CompetitionMember extends Member {
         super(name, birthdate, signUpDate, id, isPaid);
     }
 
+    public CompetitionMember(String chosenName, LocalDate chosenDate) {
+        super(chosenName, chosenDate);
+    }
+
     public void addCompetitionPerformance() {
         System.out.println("Tilføj stævne-performance for: " + getName());
 
