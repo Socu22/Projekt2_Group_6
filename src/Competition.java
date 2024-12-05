@@ -19,14 +19,16 @@ public class Competition {
         this.distance = distance;
         this.modtagetMemberName= member.getName();
         this.modtagetMemberID= member.getID();
-    }
-    public Competition(String name, String disciplin, int placement, LocalDate date, double timeResult){
+    }/*
+    public Competition(Member member, String name, String disciplin, int placement, LocalDate date, double timeResult, int distance){
         this.name = name;
         this.disciplin = disciplin;
         this.placement = placement;
         this.date = date;
         this.timeResult = timeResult;
+        this.distance = distance;
     }
+    */
 
     public void addCompetitionTime(double time) {
         this.timeResult = time;
@@ -38,6 +40,10 @@ public class Competition {
         } else {
             System.out.println("Tid for: " + name + "i disciplinen: " + disciplin + ": " + timeResult);
         }
+    }
+
+    public String compToCSV(Competition c){
+        return date + "," + timeResult + "," + disciplin + "," + distance + "," + name + "," + placement + "," + modtagetMemberName;
     }
 
     public String toString(){

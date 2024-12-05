@@ -76,7 +76,7 @@ public class TrainTime implements Comparable<TrainTime>{
 
     public String toString(){
         //return "\t"+modtagetMemberName+" - (ID: "+modtagetMemberID+") \t\t\t=\t\t "+date + " - " + discipline + " " + distance + "m - " + durationInTime + " minutter";
-        return String.format("\uD83D\uDD14: %10s %10s %4s meter - %s - %s (ID: %s)", durationInTime, discipline, distance, date, modtagetMemberName, modtagetMemberID);
+        return String.format("\uD83D\uDD14: %10s %10s \uD83C\uDFCA\u200D♀\uFE0F%4s Ⓜ\uFE0F  %s \uD83D\uDCC5 - %s (ID: %s)", durationInTime, discipline, distance, date, modtagetMemberName, modtagetMemberID);
     }
 
     public static void main(String[] args) {
