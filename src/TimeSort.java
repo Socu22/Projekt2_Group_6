@@ -74,6 +74,8 @@ public class TimeSort {
         }
     }
     public static List<String> printKnown_DisciplineOrDistance (){
+        //den her er for at være sikker på at en type discipline er blevet brugt før og ud fra det kan man tilføje sig selv til discipliner som andre har tilmelt sig til før.
+        //den er lavet til traintimes, dvs den virker ikke endnu til Competitions !!
         groupByDisciplines();
         selectDiscipline();
         List<String> strings = Arrays.asList(inputDiscipline,inputDistance);
