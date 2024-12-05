@@ -39,6 +39,6 @@ public class Competition {
     }
 
     public String toString(){
-        return "Tid for: " +name+ " i disciplinen: " +disciplin+ ": " +timeResult+ "\n" +name+ " placerede nr: " +placement+ " den: "+date;
+        return "Tid for: " +name+ " i disciplinen: " +disciplin+ ": " +timeResult+ "\n" +modtagetMemberName+ " placerede nr: " +placement+ " den: "+date;
     }
 }
