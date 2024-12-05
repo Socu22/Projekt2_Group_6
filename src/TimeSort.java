@@ -63,7 +63,6 @@ public class TimeSort {
         selectDiscipline();
 
         String keyInputSearch = inputDiscipline.toUpperCase() + " " + inputDistance + "m";// custom key from input will match with custom key from ealier
-        System.out.println(grouped.get(keyInputSearch));
         if (groupedByDistance.containsKey(keyInputSearch)) {
             trainTimes = groupedByDistance.get(keyInputSearch);
             System.out.println("\nTop 5 for Group: " + keyInputSearch);
