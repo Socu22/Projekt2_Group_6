@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class CompetitionMember extends Member {
     private String hold;
-    private ArrayList<Competition> competitions = new ArrayList<>();
+    private ArrayList<Competition> competitionList = new ArrayList<>();
 
-    public CompetitionMember(String name, LocalDate birthdate) {
-        super(name, birthdate);
+    public CompetitionMember(String name, LocalDate birthdate,LocalDate signUpDate, int id, boolean isPaid) {
+        super(name, birthdate, signUpDate, id, isPaid);
     }
 
     public void addCompetitionPerformance() {
@@ -18,19 +18,19 @@ public class CompetitionMember extends Member {
         double time = InputHandler.inputDouble("Indtast tid (sekunder):");
         int placement = InputHandler.inputInt("Indtast placering:");
 
-        Competition competition = new Competition(competitionName, discipline, placement, competitionDate);
+        Competition competition = new Competition(competitionName, discipline, placement, competitionDate, time);
         competition.addCompetitionTime(time);
-        competitions.add(competition);
+        competitionList.add(competition);
 
         System.out.println("Performance gemt for stævnet: " + competitionName);
     }
 
     public void viewCompetitions() {
         System.out.println("Stævneinformation for: " + getName());
-        if (competitions.isEmpty()) {
+        if (competitionList.isEmpty()) {
             System.out.println("Ingen registrerede stævner endnu.");
         } else {
-            for (Competition competition : competitions) {
+            for (Competition competition : competitionList) {
                 System.out.println(competition);
             }
         }
@@ -46,6 +46,9 @@ public class CompetitionMember extends Member {
             this.hold = "Ældrehold";
         }
         System.out.println(getName() + " er blevet tildelt til hold: " + hold);
+    }
+    public ArrayList<Competition> getComepetitionList() {
+        return competitionList;
     }
 
     public String getHold() {

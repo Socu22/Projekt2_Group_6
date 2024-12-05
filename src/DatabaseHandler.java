@@ -30,6 +30,7 @@ public class DatabaseHandler {
             BufferedReader br = new BufferedReader(new FileReader(path));
             String line;
             Member currentMember = null;
+            CompetitionMember currentCompetitionMember = null;
 
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",");
@@ -48,6 +49,9 @@ public class DatabaseHandler {
                         currentMember = new Member(name, birthdate, signUpDate, id, isPaid);
                     } else if (type.equalsIgnoreCase("passivmedlem")) {
                         currentMember = new PassiveMember(name, birthdate, signUpDate, id, isPaid);
+                    } else if (type.equalsIgnoreCase("comptetitionmember")) {
+                        currentCompetitionMember = new CompetitionMember(name, birthdate, signUpDate, id, isPaid);
+                        
                     }
 
                     if (currentMember != null) {
@@ -62,6 +66,16 @@ public class DatabaseHandler {
                         // Local values are added to traintime object
                     TrainTime trainTime = new TrainTime(currentMember,date, duration, discipline, distance);
                     currentMember.getTrainTimeList().add(trainTime); //Traintime object is added to currentMember object
+                } // Checks if it is a Comepetion
+                else if (fields.length == 5 && currentMember != null) {
+                    LocalDate date = LocalDate.parse(fields[0]);
+                    String competitionName = fields[1];
+                    int placement = Integer.parseInt(fields[2]);
+                    double timeResult = Double.parseDouble(fields[3]);
+                    String disciplin = fields[4];
+                    Competition competition = new Competition(currentMember, competitionName, disciplin, placement, date, timeResult);
+                    assert currentCompetitionMember != null;
+                    currentCompetitionMember.getComepetitionList().add(competition);
                 }
             }
             Member.setIdCounter(currentMember.getID()+1);
