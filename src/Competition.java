@@ -6,15 +6,17 @@ public class Competition {
     String disciplin;
     int placement;
     LocalDate date;
+    int distance;
     private String modtagetMemberName;
     private int modtagetMemberID;
 
-    public Competition(Member member, String name, String disciplin, int placement, LocalDate date, double timeResult) {
+    public Competition(Member member, String name, String disciplin, int placement, LocalDate date, double timeResult, int distance) {
         this.name = name;
         this.disciplin = disciplin;
         this.placement = placement;
         this.date = date;
         this.timeResult = timeResult;
+        this.distance = distance;
         this.modtagetMemberName= member.getName();
         this.modtagetMemberID= member.getID();
     }
@@ -39,6 +41,6 @@ public class Competition {
     }
 
     public String toString(){
-        return "Tid for: " +name+ " i disciplinen: " +disciplin+ ": " +timeResult+ "\n" +modtagetMemberName+ " placerede nr: " +placement+ " den: "+date;
+        return "Tid for: " +name+ " i disciplinen: " +disciplin+ " " +distance+ " meter: " +timeResult+ " sekunder" + "\n" +modtagetMemberName+ " placerede nr: " +placement+ " den: "+date;
     }
 }

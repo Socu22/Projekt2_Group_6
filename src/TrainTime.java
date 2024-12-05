@@ -18,7 +18,7 @@ public class TrainTime implements Comparable<TrainTime>{
     public TrainTime(Member member, LocalDate date, double timeSec, String discipline, int distance){
         this.date = date;
         this.performance = distance/timeSec;
-        this.duration = setDuration(timeSec);
+        this.duration = timeSec;
         this.durationinSec = timeSec;
         this.discipline = discipline.toUpperCase();
         this.distance = distance;
@@ -32,28 +32,27 @@ public class TrainTime implements Comparable<TrainTime>{
     }
 
     String calTimeFromSec(double sec){
+        double timeInMilliSecs = sec * 100;
         int minutes = 0;
         int seconds = 0;
+        int milliseconds = 0;
 
-        for (int i = 0; i<sec; i++){
-            seconds++;
-            if (seconds == 60){
-                minutes++;
-                seconds=0;
+        for (int i = 0; i<timeInMilliSecs; i++){
+            milliseconds++;
+            if (milliseconds == 100){
+                seconds++;
+                if(seconds == 60){
+                    minutes++;
+                    seconds = 0;
+                }
+                milliseconds=0;
             }
         }
-        return minutes + ":" + seconds;
+
+        return minutes + ":" + seconds + ":" + milliseconds;
     }
 
-    double setDuration(double durationInSec){
-        if (durationInSec >= 60){
-            this.secOrMin = " minutter";
-            return durationInSec/60;
-        }
-        else{
-            return durationInSec;
-        }
-    }
+
 
     public double getDuration() {
         return duration;
@@ -76,13 +75,17 @@ public class TrainTime implements Comparable<TrainTime>{
     }
 
     public String toString(){
-        return "\t"+modtagetMemberName+"[id("+modtagetMemberID+")]"+date + " - " + discipline + " " + distance + "m - " + durationInTime;
+        //return "\t"+modtagetMemberName+" - (ID: "+modtagetMemberID+") \t\t\t=\t\t "+date + " - " + discipline + " " + distance + "m - " + durationInTime + " minutter";
+        return String.format("\uD83D\uDD14: %10s %10s %4s meter - %s - %s (ID: %s)", durationInTime, discipline, distance, date, modtagetMemberName, modtagetMemberID);
     }
 
     public static void main(String[] args) {
-        Member m1 = new Member("Rasmus", LocalDate.of(2001,01,01));
-        TrainTime t1 = new TrainTime(m1, LocalDate.now(), 200, "Crawl",100);
+        Member m1 = new Member("Rasmus Falster Jørgensen Skibidi", LocalDate.of(2001,01,02));
+        TrainTime t1 = new TrainTime(m1, LocalDate.now(), 200.13, "Crawl",100);
+        Member m2 = new Member("Louise Lækkerlæber", LocalDate.of(1998,01,01));
+        TrainTime t2 = new TrainTime(m2, LocalDate.now(), 67.91, "RygCrawl", 200);
         System.out.println(t1);
+        System.out.println(t2);
     }
 
     @Override
