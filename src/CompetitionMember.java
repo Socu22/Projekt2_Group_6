@@ -7,10 +7,12 @@ public class CompetitionMember extends Member {
 
     public CompetitionMember(String name, LocalDate birthdate,LocalDate signUpDate, int id, boolean isPaid) {
         super(name, birthdate, signUpDate, id, isPaid);
+        assignHold();
     }
 
     public CompetitionMember(String chosenName, LocalDate chosenDate) {
         super(chosenName, chosenDate);
+        assignHold();
     }
 
     public void addCompetitionPerformance() {
