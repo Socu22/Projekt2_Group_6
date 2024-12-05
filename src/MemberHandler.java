@@ -95,6 +95,7 @@ public class MemberHandler {
 
             case 3:
                 m = new CompetitionMember(chosenName, chosenDate);
+                memberList.add(m);
                 break;
 
             default:
