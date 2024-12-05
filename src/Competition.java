@@ -6,12 +6,24 @@ public class Competition {
     String disciplin;
     int placement;
     LocalDate date;
+    private String modtagetMemberName;
+    private int modtagetMemberID;
 
-    public Competition(String name, String disciplin, int placement, LocalDate date) {
+    public Competition(Member member, String name, String disciplin, int placement, LocalDate date, double timeResult) {
         this.name = name;
         this.disciplin = disciplin;
         this.placement = placement;
         this.date = date;
+        this.timeResult = timeResult;
+        this.modtagetMemberName= member.getName();
+        this.modtagetMemberID= member.getID();
+    }
+    public Competition(String name, String disciplin, int placement, LocalDate date, double timeResult){
+        this.name = name;
+        this.disciplin = disciplin;
+        this.placement = placement;
+        this.date = date;
+        this.timeResult = timeResult;
     }
 
     public void addCompetitionTime(double time) {
