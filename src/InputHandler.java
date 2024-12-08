@@ -25,7 +25,14 @@ public class InputHandler {
                 System.out.println("Ugyldigt input: Der forventes et heltal.");
             }
         }
+        InputHandler.clearScreen();
         return result;
+    }
+
+    public static void clearScreen(){
+        for (int i = 0; i<50; i++){
+            System.out.println("");
+        }
     }
 
     public static double inputDouble(String prompt) {
@@ -41,6 +48,7 @@ public class InputHandler {
                 System.out.println("Ugyldigt input: Der forventes et kommatal.");
             }
         }
+        InputHandler.clearScreen();
         return result;
     }
 
@@ -55,6 +63,7 @@ public class InputHandler {
                 break;
             }
         }
+        InputHandler.clearScreen();
         return input;
     }
 
@@ -71,6 +80,7 @@ public class InputHandler {
             switch (choice) {
                 case 1:
                     result = LocalDate.now();
+                    InputHandler.clearScreen();
                     return result;
 
                 case 2:
@@ -79,6 +89,7 @@ public class InputHandler {
                         try {
                             String input = scanner.nextLine();
                             result = LocalDate.parse(input);
+                            InputHandler.clearScreen();
                             return result;
                         } catch (DateTimeParseException e) {
                             System.out.println("Ugyldigt datoformat. Forventet format er YYYY-MM-DD.");
@@ -99,6 +110,7 @@ public class InputHandler {
             try {
                 String input = scanner.nextLine();
                 result = LocalDate.parse(input);
+                clearScreen();
                 return result;
             } catch (DateTimeParseException e) {
                 System.out.println("Ugyldigt datoformat. Forventet format er YYYY-MM-DD.");

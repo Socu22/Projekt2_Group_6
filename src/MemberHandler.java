@@ -10,7 +10,7 @@ public class MemberHandler {
         System.out.println("Indtast navn: ");
         String searchName = name;
         for (Member m: memberList){
-            if (m.getName().equalsIgnoreCase(searchName)){
+            if (m.getName().contains(searchName)){
                 foundList.add(m);
             }
         }
