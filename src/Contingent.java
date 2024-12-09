@@ -2,10 +2,17 @@
 public class Contingent {
     private double amount;      //Price of membership
     private boolean isPaid;     //Current payment status
+    private Member m;
 
     public Contingent(Member m){
+        this.m=m;
 
         //Check age of member to set price
+        contingentLogic();
+
+        isPaid = false;         //Set payment status to unpaid
+    }
+    private void contingentLogic(){
         if (m.getAge()<18){
             amount = 1000;
         } else if (m.getAge()>60) {
@@ -17,7 +24,6 @@ public class Contingent {
             amount = 500;
         }
 
-        isPaid = false;         //Set payment status to unpaid
     }
 
     public boolean getDebt() {  //Returns payment status

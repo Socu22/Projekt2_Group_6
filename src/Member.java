@@ -24,27 +24,12 @@ public class Member {
         idCounter++;
         this.contingent = new Contingent(this);
 
-            //Logic for assigning member type
-            if (this.getAge()<18){
-                memberType = "Junior Motionist";
-            } else if (this.getAge()>60) {
-                memberType = "Ældre Motionist";
-            }else {
-                memberType = "Senior Motionist";
-            }
-        //Logic for assigning passive member
-        if (this instanceof PassiveMember) {
-            if (this.getAge()<18){
-                memberType = "Junior Passiv";
-            } else {
-                memberType = "Senior Passiv";
-            }
-        }
+        //Members Type logic Calc with age
+        memberTypeLogic();
+
     }
 
-    public static void setIdCounter(int i){
-        idCounter = i;
-    }
+
 
     //Constructor for .csv
     public Member (String name, LocalDate birthdate, LocalDate signUpDate, int id, boolean isPaid){
@@ -58,7 +43,16 @@ public class Member {
         if (this.id>idCounter){
             idCounter = this.id+1;
         }
+        //Members Type logic Calc with age
+        memberTypeLogic();
 
+
+
+
+    }
+
+    private void memberTypeLogic (){
+        //Logic for assigning member type
         if (this.getAge()<18){
             memberType = "Junior Motionist";
         } else if (this.getAge()>60) {
@@ -66,7 +60,7 @@ public class Member {
         }else {
             memberType = "Senior Motionist";
         }
-
+        //Logic for assigning passive member
         if (this instanceof PassiveMember) {
             if (this.getAge()<18){
                 memberType = "Junior Passiv";
@@ -76,6 +70,9 @@ public class Member {
         }
     }
 
+    public static void setIdCounter(int i){
+        idCounter = i;
+    }
 
     public Contingent getContingent() {
         return contingent;
