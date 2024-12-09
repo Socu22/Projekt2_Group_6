@@ -69,7 +69,7 @@ public class AdminInterface {
             currentMember = MemberHandler.smartSearch();
             System.out.println(currentMember);
         } catch (MemberNotFoundException e) {
-            System.out.println(e.toString());
+            System.out.println("Medlem ikke fundet.");
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
         }
@@ -161,7 +161,7 @@ public class AdminInterface {
 
     public void outputMembersInDebt(){
         for (Member m: MemberHandler.getMemberList()){
-            if (m.getContingent().getDebt() == false){
+            if (!m.getContingent().getDebt() ){
                 System.out.println(m.getName() + ": Har ikke betalt");
             }
         }

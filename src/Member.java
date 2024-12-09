@@ -1,13 +1,10 @@
 import java.time.LocalDate;
-import java.time.Duration;
 import java.time.Period;
-import java.time.Year;
 import java.util.*;
-import java.time.temporal.ChronoUnit;
 
 public class Member {
-    private String name;
-    private int id;
+    private final String name;
+    private final int id;
     private final LocalDate birthdate;
     private final LocalDate signUpDate;
     private int age;
@@ -102,13 +99,6 @@ public class Member {
         contingent.addDebt();
     }
 
-    public void viewTimesLegacy(){
-        System.out.println("\nHer er et overblik over dine tider: ");
-        for (TrainTime t: trainTimeList){
-            System.out.println(t);
-        }
-    }
-
 
     public void viewTimes(){
         HashMap<String, Integer> disciplineMap = new HashMap<>();
@@ -167,14 +157,7 @@ public class Member {
         this.trainTimeList.add(new TrainTime(this,dateOfTime, durationInSec, chosenDiscipline, distanceSwam));
     }
 
-    public static void main(String[] args) {
-        Member m1 = new PassiveMember("Frederik", LocalDate.of(1922, 02, 12));
-        System.out.println(m1);
-        m1.addTime();
-        m1.addTime();
-        m1.addTime();
-        m1.viewTimes();
-    }
+
 }
 
 class PassiveMember extends Member{

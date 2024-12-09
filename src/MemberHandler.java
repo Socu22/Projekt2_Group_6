@@ -5,17 +5,16 @@ public class MemberHandler {
 
     public static ArrayList<Member> memberList = new ArrayList<>();
 
-    static Member searchByName(String name) throws MemberNotFoundException, InvalidInputException{
+    static Member searchByName(String name) throws MemberNotFoundException{
         ArrayList<Member> foundList = new ArrayList<>();
         System.out.println("Indtast navn: ");
-        String searchName = name;
         for (Member m: memberList){
-            if (m.getName().contains(searchName)){
+            if (m.getName().contains(name)){
                 foundList.add(m);
             }
         }
         if(foundList.size() == 1){
-            return foundList.get(0);
+            return foundList.getFirst();
         }
         else if (foundList.size() > 1) {
             System.out.println("Følgende brugere blev fundet med dette navn:");
@@ -43,9 +42,8 @@ public class MemberHandler {
 
     static Member searchByID(int id) throws MemberNotFoundException{
         System.out.println("Indtast ID: ");
-        int searchID = id;
         for (Member m: memberList){
-            if (m.getID()==searchID){
+            if (m.getID()== id){
                 return m;
             }
         }
@@ -58,6 +56,7 @@ public class MemberHandler {
         try{
             idInput = Integer.parseInt(userInput);
         }catch (Exception e){
+
         }
         if(idInput>0){
             return searchByID(idInput);

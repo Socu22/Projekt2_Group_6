@@ -1,36 +1,22 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class DatabaseHandler {
 
-    private static String path = "src//Database.csv";
+    private final static String path = "src//Database.csv";
     private static String line = "";
+    private static  ArrayList<Member> Memberlist;
 
-    public static void readFile() { //Method for reading .csv file
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
 
-            while ((line = br.readLine()) != null) {
-                String[] medlemmer = line.split(",");
-                System.out.println(Arrays.toString(medlemmer));
-            }
-            br.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public static ArrayList<Member> load() { //Method for converting .csv file to arraylist
-        ArrayList<Member> Memberlist = new ArrayList<>();
+        Memberlist = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             String line;
             Member currentMember = null;
-            CompetitionMember currentCompetitionMember = null;
 
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",");
@@ -56,7 +42,7 @@ public class DatabaseHandler {
                     if (currentMember != null) {
                         Memberlist.add(currentMember);
                     }
-                }// Checks if is reading a time value
+                }// Checks if it is reading a time value
                 else if (fields.length == 4 && currentMember != null) {
                     LocalDate date = LocalDate.parse(fields[0]); //Local variables are added from .csv
                     double duration = Double.parseDouble(fields[1]);
@@ -117,7 +103,7 @@ public class DatabaseHandler {
             }
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Filen er blevet gemt.");
         }
     }
 
@@ -129,20 +115,7 @@ public class DatabaseHandler {
         return t.getDate() + "," + t.getDuration() + "," + t.getDiscipline() + "," + t.getDistance();
     }
 
-    public static void writeToFile(Member member) { // Method for adding Member to Database.csv file
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(path, false));
-            bw.write(member.toCSV());
-            bw.newLine();
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public static void main(String[] args) {
-        MemberHandler.loadFromDatabase();
-        save();
-        readFile();
-    }
+
+
 }

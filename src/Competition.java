@@ -7,7 +7,7 @@ public class Competition {
     int placement;
     LocalDate date;
     int distance;
-    private String modtagetMemberName;
+    private final String modtagetMemberName;
 
     public Competition(Member member, String name, String disciplin, int placement, LocalDate date, double timeResult, int distance) {
         this.name = name;
@@ -23,16 +23,9 @@ public class Competition {
         this.timeResult = time;
     }
 
-    public void showCompetitionTime() {
-        if (timeResult == 0.0) {
-            System.out.println("Der er ingen tid for denne disciplin");
-        } else {
-            System.out.println("Tid for: " + name + "i disciplinen: " + disciplin + ": " + timeResult);
-        }
-    }
 
     public String compToCSV(Competition c){
-        return date + "," + timeResult + "," + disciplin + "," + distance + "," + name + "," + placement + "," + modtagetMemberName;
+        return c.date + "," + c.timeResult + "," + c.disciplin + "," + c.distance + "," + c.name + "," + c.placement + "," + c.modtagetMemberName;
     }
 
     public String toString(){

@@ -5,15 +5,12 @@ public class TimeSort {
 
     private static List<TrainTime> trainTimes = new ArrayList<>(); //List with all traintimes
     private static List<String> distanceKeys;
-    private static TimeSort instance= new TimeSort();
     private static Map<String, List<TrainTime>> grouped; // so the grouped keys can printed out easier
     private static Map<String, List<TrainTime>> groupedByDistance; //this one is here so it can search with distance and not just group like grouped map
     private static String inputDiscipline; //straight forward
     private static String inputDistance; // straight forward
 
-    public static TimeSort getInstance() {
-        return instance;
-    }
+
 
     private static void groupByDisciplines() {
 
@@ -72,20 +69,5 @@ public class TimeSort {
         } else {
             System.out.println("No results found for group: " + keyInputSearch);//if not this happens
         }
-    }
-    public static List<String> printKnown_DisciplineOrDistance (){
-        //den her er for at være sikker på at en type discipline er blevet brugt før og ud fra det kan man tilføje sig selv til discipliner som andre har tilmelt sig til før.
-        //den er lavet til traintimes, dvs den virker ikke endnu til Competitions !!
-        groupByDisciplines();
-        selectDiscipline();
-        List<String> strings = Arrays.asList(inputDiscipline,inputDistance);
-
-
-        return strings;
-    }
-
-
-    public static void main(String[] args) {
-
     }
 }
