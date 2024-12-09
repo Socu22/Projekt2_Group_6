@@ -1,12 +1,10 @@
-import java.time.LocalDate;
 
 public class Contingent {
-    private double amount;
-    private boolean isPaid;
-    private Member member;
+    private double amount;      //Price of membership
+    private boolean isPaid;     //Current payment status
 
     public Contingent(Member m){
-        this.member=m;
+        //Check age of member to set price
         if (m.getAge()<18){
             amount = 1000;
         } else if (m.getAge()>60) {
@@ -14,34 +12,31 @@ public class Contingent {
         }else {
             amount = 1600;
         }
-
         if(m instanceof PassiveMember){
             amount = 500;
         }
-        isPaid = false;
+
+        isPaid = false;         //Set payment status to unpaid
     }
 
-    public double getAmount(){
-        return amount;
-    }
-
-    public boolean getDebt() {
+    public boolean getDebt() {  //Returns payment status
         return isPaid;
     }
 
-    void addDebt(){
+    void addDebt(){             //Sets dept to unpaid
         isPaid = false;
     }
 
-    void payDebt(){
+    void payDebt(){             //Sets debt to paid
         isPaid = true;
     }
-    void setContingentToCSV(boolean isPaid){
+
+    void setContingentToCSV(boolean isPaid){    //Sets the payments status from the database
         this.isPaid = isPaid;
     }
 
-    String paidString(){
-        if (isPaid == true){
+    String paidString(){        //Returns payment status as a string
+        if (isPaid){
             return "har betalt";
         }
         else{
@@ -50,6 +45,6 @@ public class Contingent {
     }
 
     public String toString(){
-        return "\tKontingent årligt: " + amount + "\n\tbetalt:" + paidString();
+        return "\tKontingent årligt: " + amount + "\n\tStatus: " + paidString();
     }
 }

@@ -1,6 +1,4 @@
-import javax.swing.*;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class TopLevelInterface {
     public static final AdminInterface startAdminInterface= new AdminInterface();
@@ -29,7 +27,7 @@ public class TopLevelInterface {
                         adminLogin();
 
                     }catch (NullPointerException e){
-
+                        System.out.println("NullpointerException");
                     }
                     break;
                 case 2:
@@ -37,7 +35,7 @@ public class TopLevelInterface {
                         userLogin();
 
                     }catch (NullPointerException e){
-
+                        System.out.println("NullpointerException");
                     }
                     break;
                 case 3:

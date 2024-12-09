@@ -6,7 +6,7 @@ public class TimeSort {
     private static List<TrainTime> trainTimes = new ArrayList<>(); //List with all traintimes
     private static List<String> distanceKeys;
     private static TimeSort instance= new TimeSort();
-    private static Map<String, List<TrainTime>> grouped; // so the grouped keyes can printed out easier
+    private static Map<String, List<TrainTime>> grouped; // so the grouped keys can printed out easier
     private static Map<String, List<TrainTime>> groupedByDistance; //this one is here so it can search with distance and not just group like grouped map
     private static String inputDiscipline; //straight forward
     private static String inputDistance; // straight forward
@@ -62,7 +62,7 @@ public class TimeSort {
         groupByDisciplines();
         selectDiscipline();
 
-        String keyInputSearch = inputDiscipline.toUpperCase() + " " + inputDistance + "m";// custom key from input will match with custom key from ealier
+        String keyInputSearch = inputDiscipline.toUpperCase() + " " + inputDistance + "m";// custom key from input will match with custom key from earlier
         if (groupedByDistance.containsKey(keyInputSearch)) {
             trainTimes = groupedByDistance.get(keyInputSearch);
             System.out.println("\nTop 5 for Group: " + keyInputSearch);
