@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class CompetitionMember extends Member {
     private String hold;
-    private ArrayList<Competition> competitionList = new ArrayList<>();
+    private final ArrayList<Competition> competitionList = new ArrayList<>();
 
     public CompetitionMember(String name, LocalDate birthdate,LocalDate signUpDate, int id, boolean isPaid) {
         super(name, birthdate, signUpDate, id, isPaid);
@@ -57,9 +57,6 @@ public class CompetitionMember extends Member {
         return competitionList;
     }
 
-    public String getHold() {
-        return hold;
-    }
 
     @Override
     public String toString(){

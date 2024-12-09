@@ -8,7 +8,6 @@ public class Competition {
     LocalDate date;
     int distance;
     private String modtagetMemberName;
-    private int modtagetMemberID;
 
     public Competition(Member member, String name, String disciplin, int placement, LocalDate date, double timeResult, int distance) {
         this.name = name;
@@ -18,7 +17,6 @@ public class Competition {
         this.timeResult = timeResult;
         this.distance = distance;
         this.modtagetMemberName= member.getName();
-        this.modtagetMemberID= member.getID();
     }
 
     public void addCompetitionTime(double time) {

@@ -36,7 +36,7 @@ public class Contingent {
     }
 
     String paidString(){        //Returns payment status as a string
-        if (isPaid == true){
+        if (isPaid){
             return "har betalt";
         }
         else{

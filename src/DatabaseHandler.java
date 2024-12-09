@@ -65,7 +65,7 @@ public class DatabaseHandler {
                         // Local values are added to traintime object
                     TrainTime trainTime = new TrainTime(currentMember,date, duration, discipline, distance);
                     currentMember.getTrainTimeList().add(trainTime); //Traintime object is added to currentMember object
-                } // Checks if it is a Comepetion
+                } // Checks if it is a Comepetiton
                 else if (fields.length == 7 && currentMember != null) {
                     LocalDate date = LocalDate.parse(fields[0]);
                     double timeResult = Double.parseDouble(fields[1]);
