@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 
 public class Contingent {
     private double amount;
