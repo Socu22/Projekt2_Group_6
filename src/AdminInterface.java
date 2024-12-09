@@ -14,7 +14,7 @@ public class AdminInterface {
 
             switch (input) {
                 case 1:
-                    //get current member
+                    //View info for a specific member
                     setCurrentMember();
                     System.out.println("Du er nu logget på medlemmet: " + currentMember);
                     break;

@@ -79,7 +79,7 @@ public class MemberHandler {
 
         int chosenInput=InputHandler.inputInt("Indtast dit valg:");
         String chosenName=InputHandler.inputString("Indtast navn:");
-        LocalDate chosenDate = InputHandler.inputDate("Indtast medlemmets fødselsdato:");
+        LocalDate chosenDate = InputHandler.inputDateSpecific("Indtast medlemmets fødselsdato:");
 
         Member m;
 
