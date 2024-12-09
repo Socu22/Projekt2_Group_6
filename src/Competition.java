@@ -9,6 +9,7 @@ public class Competition {
     int distance;
     private final String modtagetMemberName;
 
+    //Constructor for Competition
     public Competition(Member member, String name, String disciplin, int placement, LocalDate date, double timeResult, int distance) {
         this.name = name;
         this.disciplin = disciplin;
@@ -22,7 +23,6 @@ public class Competition {
     public void addCompetitionTime(double time) {
         this.timeResult = time;
     }
-
 
     public String compToCSV(Competition c){
         return c.date + "," + c.timeResult + "," + c.disciplin + "," + c.distance + "," + c.name + "," + c.placement + "," + c.modtagetMemberName;

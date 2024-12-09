@@ -4,6 +4,7 @@ public class Contingent {
     private boolean isPaid;     //Current payment status
 
     public Contingent(Member m){
+
         //Check age of member to set price
         if (m.getAge()<18){
             amount = 1000;

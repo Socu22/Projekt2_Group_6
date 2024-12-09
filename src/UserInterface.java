@@ -6,6 +6,7 @@ public class UserInterface {
     public CompetitionMember typeCastMember;
     public static boolean running= true;
 
+    //Logs in user displays menu according to type of member logged in
     public void start_interface_User(){
         while (running) {
             loginUser();
@@ -13,6 +14,7 @@ public class UserInterface {
         }
     }
 
+    //Menu for non-competition members
     public void regularMenu(){
         switch (inputInt) {
             case 1:
@@ -30,6 +32,7 @@ public class UserInterface {
         }
     }
 
+    //Menu for competition members
     public void compMenu(){
         switch (inputInt) {
             case 1:
@@ -53,7 +56,6 @@ public class UserInterface {
             case 5:
                 back();
                 break;
-
         }
     }
 
@@ -61,6 +63,7 @@ public class UserInterface {
         UserInterface.running = running;
     }
 
+    //Finds user in system and logs them in
     public void loginUser() {
         try {
             currentMember= MemberHandler.smartSearch();
@@ -73,8 +76,9 @@ public class UserInterface {
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
         }
-
     }
+
+    //displays different menus according to user type
     public void differentUserLogic(){
         System.out.println("Velkommen " + currentMember.getName());
         System.out.println("Tast 1 for at registrer tid for medlem: ");

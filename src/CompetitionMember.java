@@ -5,16 +5,19 @@ public class CompetitionMember extends Member {
     private String hold;
     private final ArrayList<Competition> competitionList = new ArrayList<>();
 
+    //Constructor for .csv
     public CompetitionMember(String name, LocalDate birthdate,LocalDate signUpDate, int id, boolean isPaid) {
         super(name, birthdate, signUpDate, id, isPaid);
         assignHold();
     }
 
+    //Constructor for system
     public CompetitionMember(String chosenName, LocalDate chosenDate) {
         super(chosenName, chosenDate);
         assignHold();
     }
 
+    //Method for adding competition times to a member
     public void addCompetitionPerformance() {
         System.out.println("Tilføj stævne-performance for: " + getName());
 
@@ -43,6 +46,7 @@ public class CompetitionMember extends Member {
         }
     }
 
+    //Assigns member to a team based on age
     public void assignHold() {
         if (super.getAge() < 18) {
             this.hold = "Juniorhold";

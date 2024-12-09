@@ -8,12 +8,16 @@ class InvalidInputException extends Exception {
     }
 }
 
+
+//Inputhandler handles user input and avoids error from misinputs
 public class InputHandler {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    //Method for handling int as input
     public static int inputInt(String prompt) {
         int result;
+        //Loops as long as input is invalid
         while (true) {
             System.out.println(prompt);
             try {
@@ -34,7 +38,7 @@ public class InputHandler {
             System.out.println(" ");
         }
     }
-
+    //Method for handling double as input
     public static double inputDouble(String prompt) {
         double result;
         while (true) {
@@ -52,6 +56,7 @@ public class InputHandler {
         return result;
     }
 
+    //Method for handling String as input
     public static String inputString(String prompt) {
         String input;
         while (true) {
@@ -67,6 +72,7 @@ public class InputHandler {
         return input;
     }
 
+    //Method for handling date as input
     public static LocalDate inputDate(String prompt) {
         System.out.println("Vælg dato input:");
         System.out.println("1. Vælg dags dato");
@@ -74,6 +80,7 @@ public class InputHandler {
 
         LocalDate result;
 
+        //Lets the user choose between 'today' or a specific date
         while (true) {
             int choice = inputInt("Indtast dit valg (1 eller 2):");
 
@@ -102,6 +109,7 @@ public class InputHandler {
         }
     }
 
+    //Only lets user input a specific date
     public static LocalDate inputDateSpecific (String prompt) {
         LocalDate result;
 

@@ -10,8 +10,8 @@ public class DatabaseHandler {
 
 
 
-
-    public static ArrayList<Member> load() { //Method for converting .csv file to arraylist
+    //Method for converting .csv file to arraylist
+    public static ArrayList<Member> load() {
         Memberlist = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
@@ -30,7 +30,7 @@ public class DatabaseHandler {
                     LocalDate signUpDate = LocalDate.parse(fields[4]);
                     boolean isPaid = Boolean.parseBoolean(fields[5]);
 
-                    //Checks membertype and adds values to member
+                    //Checks member type and adds values to member
                     if (type.equalsIgnoreCase("aktivmedlem")) {
                         currentMember = new Member(name, birthdate, signUpDate, id, isPaid);
                     } else if (type.equalsIgnoreCase("passivmedlem")) {
@@ -48,10 +48,10 @@ public class DatabaseHandler {
                     double duration = Double.parseDouble(fields[1]);
                     String discipline = fields[2];
                     int distance = Integer.parseInt(fields[3]);
-                        // Local values are added to traintime object
+                    // Local values are added to traintime object
                     TrainTime trainTime = new TrainTime(currentMember,date, duration, discipline, distance);
-                    currentMember.getTrainTimeList().add(trainTime); //Traintime object is added to currentMember object
-                } // Checks if it is a Comepetiton
+                    currentMember.getTrainTimeList().add(trainTime); //Train time object is added to currentMember object
+                } // Checks if it is a Competition
                 else if (fields.length == 7 && currentMember != null) {
                     LocalDate date = LocalDate.parse(fields[0]);
                     double timeResult = Double.parseDouble(fields[1]);

@@ -5,17 +5,21 @@ public class MemberHandler {
 
     public static ArrayList<Member> memberList = new ArrayList<>();
 
+    //Search by partial or full name
     static Member searchByName(String name) throws MemberNotFoundException{
         ArrayList<Member> foundList = new ArrayList<>();
         System.out.println("Indtast navn: ");
+        //Adds found members to list
         for (Member m: memberList){
             if (m.getName().contains(name)){
                 foundList.add(m);
             }
         }
+        //If only one member is found, returns found member
         if(foundList.size() == 1){
             return foundList.getFirst();
         }
+        //Outputs found members by list, lets user choose
         else if (foundList.size() > 1) {
             System.out.println("Følgende brugere blev fundet med dette navn:");
             int foundUserNR = 1;
@@ -40,6 +44,7 @@ public class MemberHandler {
         return DatabaseHandler.load();
     }
 
+    //Searches users by id
     static Member searchByID(int id) throws MemberNotFoundException{
         System.out.println("Indtast ID: ");
         for (Member m: memberList){
@@ -50,6 +55,7 @@ public class MemberHandler {
         throw new MemberNotFoundException();
     }
 
+    //Combines search methods
     public static Member smartSearch() throws MemberNotFoundException, InvalidInputException{
         String userInput = InputHandler.inputString("Indtast navn eller ID på den ønskede bruger:");
         int idInput = 0;
@@ -70,8 +76,7 @@ public class MemberHandler {
         return memberList.getLast();
     }
 
-
-
+    //Method for creating member
     public static void createMember() throws InvalidInputException{
         System.out.println("Du har valgt at oprette et nyt medlem i svømmeklubben. Hvilken type medlem skal det være?");
         System.out.println("1: Standard medlem \n2: Passivt medlem \n3: Konkurrence medlem");
@@ -100,34 +105,6 @@ public class MemberHandler {
             default:
                 System.out.println("Ugyldigt input.");
                 break;
-        }
-    }
-
-
-    public static void main(String[] args) {
-        try {
-            memberList = DatabaseHandler.load();
-        }catch (Exception e){
-            System.out.println("Kunne ikke læse fil");
-            e.printStackTrace();
-        }
-
-        try {
-            System.out.println(MemberHandler.smartSearch());
-            System.out.println(MemberHandler.smartSearch());
-            System.out.println(MemberHandler.smartSearch());
-            System.out.println(MemberHandler.smartSearch());
-            System.out.println(MemberHandler.smartSearch());
-            System.out.println(MemberHandler.smartSearch());
-
-        }
-        catch (MemberNotFoundException e){
-            System.out.println("Medlem ikke fundet i databasen");
-            e.printStackTrace();
-        }
-        catch (InvalidInputException e) {
-            System.out.println("Fejl i indtastning, prøv igen.");
-            e.printStackTrace();
         }
     }
 }

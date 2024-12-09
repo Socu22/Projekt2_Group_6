@@ -2,17 +2,19 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+//Contains attributes to member
 public class Member {
     private final String name;
     private final int id;
     private final LocalDate birthdate;
     private final LocalDate signUpDate;
     private int age;
-    private String memberType;
-    private ArrayList<TrainTime> trainTimeList = new ArrayList<>();
-    private Contingent contingent;
-    private static int idCounter = 1;
+    private String memberType;                                            //Contains type of member
+    private ArrayList<TrainTime> trainTimeList = new ArrayList<>();       //Contains all performances by member
+    private Contingent contingent;                                        //Contains contingent objects
+    private static int idCounter = 1;                                     //Makes sure members are assigned unique id's
 
+    //Constructor for creating new member in system
     public Member (String name, LocalDate birthdate){
         this.name = name;
         this.birthdate = birthdate;
@@ -22,6 +24,7 @@ public class Member {
         idCounter++;
         this.contingent = new Contingent(this);
 
+            //Logic for assigning member type
             if (this.getAge()<18){
                 memberType = "Junior Motionist";
             } else if (this.getAge()>60) {
@@ -29,7 +32,7 @@ public class Member {
             }else {
                 memberType = "Senior Motionist";
             }
-
+        //Logic for assigning passive member
         if (this instanceof PassiveMember) {
             if (this.getAge()<18){
                 memberType = "Junior Passiv";
@@ -43,6 +46,7 @@ public class Member {
         idCounter = i;
     }
 
+    //Constructor for .csv
     public Member (String name, LocalDate birthdate, LocalDate signUpDate, int id, boolean isPaid){
         this.name = name;
         this.birthdate = birthdate;
@@ -137,10 +141,6 @@ public class Member {
         return signUpDate;
     }
 
-    public  String toCSV(){
-        return memberType + "," + name + "," + id + "," + birthdate + "," + signUpDate + "," + age;
-    }
-
     public String getMemberType(){
         return memberType;
     }
@@ -156,15 +156,15 @@ public class Member {
         double durationInSec = InputHandler.inputDouble("Indtast tiden det tog dig i sekunder: ");
         this.trainTimeList.add(new TrainTime(this,dateOfTime, durationInSec, chosenDiscipline, distanceSwam));
     }
-
-
 }
 
 class PassiveMember extends Member{
+    //Constructor for system
     public PassiveMember(String name, LocalDate birthdate) {
         super(name, birthdate);
     }
-    public PassiveMember(String name, LocalDate birthdate, LocalDate signUpDate, int id, boolean isPaid) { //Contstructer 2
+    //Constructor for .csv
+    public PassiveMember(String name, LocalDate birthdate, LocalDate signUpDate, int id, boolean isPaid) {
         super(name, birthdate, signUpDate, id, isPaid);
     }
 

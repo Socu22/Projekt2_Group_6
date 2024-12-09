@@ -5,12 +5,11 @@ public class AdminInterface {
     private Member currentMember;
     public static boolean running = true;
 
-
+    //Menu interface for admin
     public void start_interface_Admin() {
         while (running) {
 
             printAndSetChoice();
-
 
             switch (input) {
                 case 1:
@@ -46,6 +45,7 @@ public class AdminInterface {
             }
         }
     }
+    //Prints options for user in console
     private void printAndSetChoice(){
         System.out.println("Tast 1 find specifikt medlem: ");
         System.out.println("Tast 2 for at registerer nyt medlem: ");
@@ -79,6 +79,7 @@ public class AdminInterface {
         return currentMember;
     }
 
+    //Method for creating member, saves to Database.csv
     public void createMember() {
         try {
             MemberHandler.createMember();
@@ -98,7 +99,7 @@ public class AdminInterface {
         }
     }
 
-
+    //Method for deleting member, deletes from Database.csv
     public void deleteCurrentMember() {
         if (currentMember == null) {
             System.out.println("Du skal først søge efter medlem, før du kan slette.");
@@ -166,5 +167,4 @@ public class AdminInterface {
             }
         }
     }
-
 }

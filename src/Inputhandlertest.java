@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.Scanner;
 
+//Test class that is no longer in use
 public class Inputhandlertest {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);

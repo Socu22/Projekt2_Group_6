@@ -7,7 +7,7 @@ public class TopLevelInterface {
     // Admin password login
     private static final String ADMIN_PASSWORD = "melon";
 
-
+    //Start menu
     public void start(){
         boolean running = true;
 

@@ -5,7 +5,7 @@ public class TimeSort {
 
     private static List<TrainTime> trainTimes = new ArrayList<>(); //List with all traintimes
     private static List<String> distanceKeys;
-    private static Map<String, List<TrainTime>> grouped; // so the grouped keys can printed out easier
+    private static Map<String, List<TrainTime>> grouped; // so the grouped keys can be printed out easier
     private static Map<String, List<TrainTime>> groupedByDistance; //this one is here so it can search with distance and not just group like grouped map
     private static String inputDiscipline; //straight forward
     private static String inputDistance; // straight forward
