@@ -1,6 +1,4 @@
-import javax.swing.*;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class TopLevelInterface {
     public static final AdminInterface startAdminInterface= new AdminInterface();
