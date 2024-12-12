@@ -28,7 +28,13 @@ public class MemberHandler {
                 foundUserNR++;
             }
             int foundUserChoice = InputHandler.inputInt("Hvilken bruger vil du tilgå?");
-            return foundList.get(foundUserChoice - 1);
+
+            try {
+                return foundList.get(foundUserChoice - 1);
+            }
+            catch (IndexOutOfBoundsException e){
+                System.out.println("Der er ikke en mulighed med det nummer.");
+            }
         }
         throw new MemberNotFoundException();
     }
